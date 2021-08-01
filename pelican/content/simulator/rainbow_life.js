@@ -45,6 +45,8 @@
     defaultRows: 120,
     defaultCellSize: 4,
 
+    // Previously this was 240, but that was a bit too small
+    // If increased to 300, it never converges if oscillators present
     runningAvgMaxDim: 280,
 
     gameMode : false,
