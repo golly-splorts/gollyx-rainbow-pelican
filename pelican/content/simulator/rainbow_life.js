@@ -41,9 +41,11 @@
     s3Default: '[{"31":[29,30,33,34,35,129,130,133,134,135]},{"32":[32,132]},{"33":[30,130]}]',
     s4Default: '[{"61":[29,30,33,34,35,129,130,133,134,135]},{"62":[32,132]},{"63":[30,130]}]',
 
-    defaultCols: 200,
+    defaultCols: 180,
     defaultRows: 120,
     defaultCellSize: 4,
+
+    runningAvgMaxDim: 280,
 
     gameMode : false,
     mapMode : false,
@@ -257,7 +259,7 @@
       }
 
       // Initialize the victor percent running average window array
-      var maxDim = 240;
+      var maxDim = this.runningAvgMaxDim;
       // var maxDim = Math.max(2*this.columns, 2*this.rows);
       for (var i = 0; i < maxDim; i++) {
         this.runningAvgWindow[i] = 0;
@@ -509,9 +511,15 @@
       this.element.generation.innerHTML = '0';
       var liveCounts = this.getCounts();
       this.updateStatisticsElements(liveCounts);
-      // If either cell count is 0 to begin with, disable victory check
+      // If three cell counts are 0 to begin with, disable victory check
       this.zeroStart = false;
-      if ((liveCounts.liveCells1===0) || (liveCounts.liveCells2===0) || (liveCounts.liveCells3===0) || (liveCounts.liveCells4===0)) {
+      var zeroScores = 0;
+      if (liveCounts.liveCells1 == 0) { zeroScores++; }
+      if (liveCounts.liveCells2 == 0) { zeroScores++; }
+      if (liveCounts.liveCells3 == 0) { zeroScores++; }
+      if (liveCounts.liveCells4 == 0) { zeroScores++; }
+      var shutoutConditions = (zeroScores == 3);
+      if (shutoutConditions) {
         this.zeroStart = true;
       }
     },
@@ -943,8 +951,7 @@
         return;
       }
       if (this.foundVictor==false) {
-        var maxDim = 240;
-        // var maxDim = Math.max(2*this.columns, 2*this.rows);
+        var maxDim = this.runningAvgMaxDim;
         // update running average window
         if (this.generation < maxDim) {
           // keep populating the window with victory/live pct
@@ -966,26 +973,42 @@
           removed = this.runningAvgLast3.shift();
           this.runningAvgLast3.push(runningAvg);
 
+          // Ignore case of running average of 0
           var tol = 1e-8;
           if (!this.approxEqual(removed, 0.0, tol)) {
-            // we have not found a victor yet, so check for one now
+            // We have a nonzero running average, and no victor,
+            // check if average has become stable
             var bool0eq1 = this.approxEqual(this.runningAvgLast3[0], this.runningAvgLast3[1], tol);
             var bool1eq2 = this.approxEqual(this.runningAvgLast3[1], this.runningAvgLast3[2], tol);
-            var zerocells = (liveCounts.liveCells1 === 0) || (liveCounts.liveCells2 === 0) || (liveCounts.liveCells3 === 0) || (liveCounts.liveCells4 === 0);
-
-            if (bool0eq1 && bool1eq2) {
-
-              // TODO: fix this
+            var victoryByStability = ((bool0eq1 && bool1eq2) && (liveCounts.liveCells > 0));
+            if (victoryByStability) {
+              // Someone won due to the simulation becoming stable
               this.ranks = this.getRanks(liveCounts);
-
               this.foundVictor = true;
               this.showWinnersLosers = true;
               this.handlers.buttons.run();
               this.running = false;
             }
           }
+        } // end if gen > maxDim
+
+        // Second way for a victor to be declared,
+        // is to have three teams get shut out.
+        var zeroScores = 0;
+        if (liveCounts.liveCells1 == 0) { zeroScores++; }
+        if (liveCounts.liveCells2 == 0) { zeroScores++; }
+        if (liveCounts.liveCells3 == 0) { zeroScores++; }
+        if (liveCounts.liveCells4 == 0) { zeroScores++; }
+        var victoryByShutout = (zeroScores == 3);
+        if (victoryByShutout) {
+          // Someone won because everyone else died
+          this.ranks = this.getRanks(liveCounts);
+          this.foundVictor = true;
+          this.showWinnersLosers = true;
+          this.handlers.buttons.run();
+          this.running = false;
         }
-      }
+      } // end if no victor found
     },
 
     getRanks : function(liveCounts) {
@@ -1221,7 +1244,7 @@
      * Run Next Step
      */
     nextStep : function() {
-
+      
       var i, x, y, r;
       var liveCellNumbers, liveCellNumber, liveCellNumber1, liveCellNumber2;
       var algorithmTime, guiTime;
