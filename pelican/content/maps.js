@@ -93,7 +93,7 @@
 
         var mapRowElem = document.getElementById('row-maps');
 
-        let mapsUrl = this.mapsApiUrl + '/maps/toroidal/' + this.season0;
+        let mapsUrl = this.mapsApiUrl + '/maps/rainbow/' + this.season0;
         fetch(mapsUrl)
         .then(res => res.json())
         .then((mapsApiResult) => {
