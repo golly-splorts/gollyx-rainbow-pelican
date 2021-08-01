@@ -1310,12 +1310,30 @@
       GOL.checkForVictor(liveCounts);
 
       // Update winner/loser if found
-      // TODO: Fix this 
       if (GOL.showWinnersLosers) {
         GOL.element.team1rank.innerHTML = this.ranks[0]+1;
         GOL.element.team2rank.innerHTML = this.ranks[1]+1;
         GOL.element.team3rank.innerHTML = this.ranks[2]+1;
         GOL.element.team4rank.innerHTML = this.ranks[3]+1;
+
+        // Losers should be in red.
+        var last = 3;
+        if (this.ranks[0]==last) {
+          GOL.element.team1rank.classList.remove('badge-success');
+          GOL.element.team1rank.classList.add('badge-danger');
+        }
+        if (this.ranks[1]==last) {
+          GOL.element.team2rank.classList.remove('badge-success');
+          GOL.element.team2rank.classList.add('badge-danger');
+        }
+        if (this.ranks[2]==last) {
+          GOL.element.team3rank.classList.remove('badge-success');
+          GOL.element.team3rank.classList.add('badge-danger');
+        }
+        if (this.ranks[3]==last) {
+          GOL.element.team4rank.classList.remove('badge-success');
+          GOL.element.team4rank.classList.add('badge-danger');
+        }
       }
 
       r = 1.0/GOL.generation;
