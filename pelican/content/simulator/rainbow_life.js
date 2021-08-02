@@ -381,7 +381,7 @@
         var cols = this.getColsFromUrlSafely();
 
         // Load a random map from the /map API endpoint
-        let url = this.mapsApiUrl + '/map/toroidal/' + this.patternName + '/r/' + this.getRowsFromUrlSafely() + '/c/' + this.getColsFromUrlSafely();
+        let url = this.mapsApiUrl + '/map/rainbow/' + this.patternName + '/r/' + this.getRowsFromUrlSafely() + '/c/' + this.getColsFromUrlSafely();
         fetch(url)
         .then(res => res.json())
         .then((mapApiResult) => {
@@ -401,6 +401,9 @@
           // Initial conditions
           this.initialState1 = mapApiResult.initialConditions1;
           this.initialState2 = mapApiResult.initialConditions2;
+          this.initialState3 = mapApiResult.initialConditions3;
+          this.initialState4 = mapApiResult.initialConditions4;
+
           this.columns = mapApiResult.columns;
           this.rows = mapApiResult.rows;
           this.cellSize = mapApiResult.cellSize;
@@ -1030,12 +1033,8 @@
         liveCounts.liveCells3, 
         liveCounts.liveCells4
       ];
-      console.log('unsorted scores:');
-      console.log(unsortedScores);
       var sortedScores = [...unsortedScores];
       sortedScores.sort(function(a, b){return b-a});
-      console.log('sorted scores:');
-      console.log(sortedScores);
       var ranks = [3, 3, 3, 3];
       var i;
       for (i=0; i<4; i++) {
@@ -1043,9 +1042,6 @@
           ranks[i] = sortedScores.indexOf(unsortedScores[i]);
         }
       }
-      console.log('sortedScores index of unsortedScores[0]:');
-      console.log(unsortedScores[0]);
-      console.log(sortedScores.indexOf(unsortedScores[0]));
       return ranks;
     },
 
@@ -1543,7 +1539,7 @@
          * Update simulation speed
          */
         speedControl : function() {
-          console.log('updated speed slider');
+          //console.log('updated speed slider');
           //var x = 0;
           //try {
           //  x = parseInt(document.getElementById("speed-slider").value);
