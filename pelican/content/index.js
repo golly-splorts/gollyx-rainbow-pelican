@@ -809,10 +809,10 @@
         } else if(mode==23) {
 
           ////////////////////////////
-          // Toroidal Cup Series
+          // Rainbow Cup Series
           // Scheduled
 
-          // Toroidal Cup has no league, single-column
+          // Rainbow Cup has no league, single-column
           var leagueContainerElem = document.getElementById('hcs-league-waiting-container');
           for (let g in currGamesApiResult) {
             var game = currGamesApiResult[g];
@@ -1094,7 +1094,7 @@
         } else if (mode==33) {
 
           ////////////////////////////
-          // Toroidal Cup Series
+          // Rainbow Cup Series
           // In progress
 
           // HCS has no league, single-column
