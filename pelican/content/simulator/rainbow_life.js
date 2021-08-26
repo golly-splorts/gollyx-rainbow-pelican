@@ -1056,8 +1056,6 @@
       this.element.livecells3.innerHTML = liveCounts.liveCells3;
       this.element.livecells4.innerHTML = liveCounts.liveCells4;
       this.element.livepct.innerHTML    = liveCounts.livePct.toFixed(1) + "%";
-      // this.element.territory1.innerHTML = liveCounts.territory1.toFixed(2) + "%";
-      // this.element.territory2.innerHTML = liveCounts.territory2.toFixed(2) + "%";
     },
 
     /**
