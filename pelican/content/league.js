@@ -220,7 +220,8 @@
               // Right side: win-loss record
               var wlElem = document.createElement('span');
               wlElem.classList.add('standings-record');
-              var winLossStr = teamStandings.teamWinLoss[0] + "-" + teamStandings.teamWinLoss[1];
+              //var winLossStr = teamStandings.teamWinLoss[0] + "-" + teamStandings.teamWinLoss[1];
+              var winLossStr = teamStandings.teamW23L[0] + "-" + teamStandings.teamW23L[1] + "-" + teamStandings.teamW23L[2] + "-" + teamStandings.teamW23L[3];
               wlElem.innerHTML = winLossStr;
 
               // Attach to right side
