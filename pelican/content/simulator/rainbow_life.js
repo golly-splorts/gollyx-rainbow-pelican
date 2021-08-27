@@ -84,8 +84,12 @@
           alive_labels: ['Yellow', 'Blue', 'Orange', 'Purple']
         },
         {
-          alive: ['#3b9dff', '#dc3220', '#fefe62', '#d41159'],
+          alive: ['#3b9dff', '#dc3220', '#fefe62', '#ffa6c9'],
           alive_labels: ['Blue', 'Red', 'Yellow', 'Pink']
+        },
+        {
+          alive: ['#EEEEEE', '#AAAAAA', '#777777', '#0A0A0A'],
+          alive_labels: ['Bright1', 'Bright2', 'Bright3', 'Bright4']
         }
       ],
     },
@@ -327,9 +331,16 @@
           }
 
           // Determine if we know a winner/loser
-          if (this.gameApiResult.hasOwnProperty('team1Score') && this.gameApiResult.hasOwnProperty('team2Score')) {
+          if (
+            this.gameApiResult.hasOwnProperty('team1Score') && 
+            this.gameApiResult.hasOwnProperty('team2Score') && 
+            this.gameApiResult.hasOwnProperty('team3Score') && 
+            this.gameApiResult.hasOwnProperty('team4Score')
+          ) {
             var s1 = this.gameApiResult.team1Score;
             var s2 = this.gameApiResult.team2Score;
+            var s3 = this.gameApiResult.team3Score;
+            var s4 = this.gameApiResult.team4Score;
             this.showWinnersLosers = true;
             if (s1 > s2) {
               this.whoWon = 1;
@@ -345,6 +356,8 @@
           // Map initial conditions
           this.initialState1 = this.gameApiResult.initialConditions1;
           this.initialState2 = this.gameApiResult.initialConditions2;
+          this.initialState3 = this.gameApiResult.initialConditions3;
+          this.initialState4 = this.gameApiResult.initialConditions4;
           this.columns = this.gameApiResult.columns;
           this.rows = this.gameApiResult.rows;
           this.cellSize = this.gameApiResult.cellSize;
@@ -535,22 +548,37 @@
      */
     updateWinLossLabels : function() {
 
-      if (this.gameMode === true) {
-        // Indicate winner/loser, if we know
-        if (this.showWinnersLosers) {
-          if (this.whoWon === 1) {
-            this.element.team1winner.innerHTML = 'W';
-          } else if (this.whoWon === 2) {
-            this.element.team2winner.innerHTML = 'W';
-          } else if (this.whoWon === 3) {
-            this.element.team2winner.innerHTML = 'W';
-          } else if (this.whoWon === 4) {
-            this.element.team2winner.innerHTML = 'W';
-          } else {
-            // huh? should not be here
-            this.showWinnersLosers = false;
-          }
+      if (GOL.showWinnersLosers) {
+        // If time to show winners/losers and no victor,
+        // it's because this game is in the past.
+        if (this.foundVictor === false) {
+          this.ranks = [this.gameApiResult.team1Rank, this.gameApiResult.team2Rank, this.gameApiResult.team3Rank, this.gameApiResult.team4Rank];
         }
+
+        GOL.element.team1rank.innerHTML = this.ranks[0]+1;
+        GOL.element.team2rank.innerHTML = this.ranks[1]+1;
+        GOL.element.team3rank.innerHTML = this.ranks[2]+1;
+        GOL.element.team4rank.innerHTML = this.ranks[3]+1;
+
+        // Losers should be in red.
+        var last = 3;
+        if (this.ranks[0]==last) {
+          GOL.element.team1rank.classList.remove('badge-success');
+          GOL.element.team1rank.classList.add('badge-danger');
+        }
+        if (this.ranks[1]==last) {
+          GOL.element.team2rank.classList.remove('badge-success');
+          GOL.element.team2rank.classList.add('badge-danger');
+        }
+        if (this.ranks[2]==last) {
+          GOL.element.team3rank.classList.remove('badge-success');
+          GOL.element.team3rank.classList.add('badge-danger');
+        }
+        if (this.ranks[3]==last) {
+          GOL.element.team4rank.classList.remove('badge-success');
+          GOL.element.team4rank.classList.add('badge-danger');
+        }
+
       }
     },
 
@@ -660,7 +688,7 @@
         }
 
         // Assemble team colors/names
-        var teamColors = [this.gameApiResult.team1Color, this.gameApiResult.team2Color, his.gameApiResult.team3Color, this.gameApiResult.team4Color];
+        var teamColors = [this.gameApiResult.team1Color, this.gameApiResult.team2Color, this.gameApiResult.team3Color, this.gameApiResult.team4Color];
         var teamNames = [this.gameApiResult.team1Name, this.gameApiResult.team2Name, this.gameApiResult.team3Name, this.gameApiResult.team4Name];
 
         // For each team, make a new <object> tag
@@ -1080,20 +1108,20 @@
         var game = this.gameApiResult;
         if (game.isPostseason) {
           // Postseason: win-loss record in current series
-          var swlstr1 = game.team1SeriesWinLoss[0] + "-" + game.team1SeriesWinLoss[1];
-          var swlstr2 = game.team2SeriesWinLoss[0] + "-" + game.team2SeriesWinLoss[1];
-          var swlstr3 = game.team3SeriesWinLoss[0] + "-" + game.team3SeriesWinLoss[1];
-          var swlstr4 = game.team4SeriesWinLoss[0] + "-" + game.team4SeriesWinLoss[1];
+          var swlstr1 = game.team1SeriesW23L[0] + "-" + game.team1SeriesW23L[1];
+          var swlstr2 = game.team2SeriesW23L[0] + "-" + game.team2SeriesW23L[1];
+          var swlstr3 = game.team3SeriesW23L[0] + "-" + game.team3SeriesW23L[1];
+          var swlstr4 = game.team4SeriesW23L[0] + "-" + game.team4SeriesW23L[1];
           this.element.team1wlrec.innerHTML = swlstr1;
           this.element.team2wlrec.innerHTML = swlstr2;
           this.element.team3wlrec.innerHTML = swlstr3;
           this.element.team4wlrec.innerHTML = swlstr4;
         } else {
           // Season: win-loss record to date
-          var wlstr1 = game.team1WinLoss[0] + "-" + game.team1WinLoss[1];
-          var wlstr2 = game.team2WinLoss[0] + "-" + game.team2WinLoss[1];
-          var wlstr3 = game.team3WinLoss[0] + "-" + game.team3WinLoss[1];
-          var wlstr4 = game.team4WinLoss[0] + "-" + game.team4WinLoss[1];
+          var wlstr1 = game.team1W23L[0] + "-" + game.team1W23L[1] + "-" + game.team1W23L[2] + "-" + game.team1W23L[3];
+          var wlstr2 = game.team2W23L[0] + "-" + game.team2W23L[1] + "-" + game.team2W23L[2] + "-" + game.team2W23L[3];
+          var wlstr3 = game.team3W23L[0] + "-" + game.team3W23L[1] + "-" + game.team3W23L[2] + "-" + game.team3W23L[3];
+          var wlstr4 = game.team4W23L[0] + "-" + game.team4W23L[1] + "-" + game.team4W23L[2] + "-" + game.team4W23L[3];
           this.element.team1wlrec.innerHTML = wlstr1;
           this.element.team2wlrec.innerHTML = wlstr2;
           this.element.team3wlrec.innerHTML = wlstr3;
@@ -1253,7 +1281,6 @@
 
       algorithmTime = (new Date()) - algorithmTime;
 
-
       // Canvas run
 
       guiTime = (new Date());
@@ -1304,31 +1331,30 @@
       GOL.checkForVictor(liveCounts);
 
       // Update winner/loser if found
-      if (GOL.showWinnersLosers) {
-        GOL.element.team1rank.innerHTML = this.ranks[0]+1;
-        GOL.element.team2rank.innerHTML = this.ranks[1]+1;
-        GOL.element.team3rank.innerHTML = this.ranks[2]+1;
-        GOL.element.team4rank.innerHTML = this.ranks[3]+1;
-
-        // Losers should be in red.
-        var last = 3;
-        if (this.ranks[0]==last) {
-          GOL.element.team1rank.classList.remove('badge-success');
-          GOL.element.team1rank.classList.add('badge-danger');
-        }
-        if (this.ranks[1]==last) {
-          GOL.element.team2rank.classList.remove('badge-success');
-          GOL.element.team2rank.classList.add('badge-danger');
-        }
-        if (this.ranks[2]==last) {
-          GOL.element.team3rank.classList.remove('badge-success');
-          GOL.element.team3rank.classList.add('badge-danger');
-        }
-        if (this.ranks[3]==last) {
-          GOL.element.team4rank.classList.remove('badge-success');
-          GOL.element.team4rank.classList.add('badge-danger');
-        }
+      if ((this.foundVictor)||(this.showWinnersLosers)) {
+        GOL.updateWinLossLabels();
       }
+
+      //if (GOL.showWinnersLosers) {
+      //  // Losers should be in red.
+      //  var last = 3;
+      //  if (this.ranks[0]==last) {
+      //    GOL.element.team1rank.classList.remove('badge-success');
+      //    GOL.element.team1rank.classList.add('badge-danger');
+      //  }
+      //  if (this.ranks[1]==last) {
+      //    GOL.element.team2rank.classList.remove('badge-success');
+      //    GOL.element.team2rank.classList.add('badge-danger');
+      //  }
+      //  if (this.ranks[2]==last) {
+      //    GOL.element.team3rank.classList.remove('badge-success');
+      //    GOL.element.team3rank.classList.add('badge-danger');
+      //  }
+      //  if (this.ranks[3]==last) {
+      //    GOL.element.team4rank.classList.remove('badge-success');
+      //    GOL.element.team4rank.classList.add('badge-danger');
+      //  }
+      //}
 
       r = 1.0/GOL.generation;
       GOL.times.algorithm = (GOL.times.algorithm * (1 - r)) + (algorithmTime * r);
