@@ -1103,29 +1103,39 @@
     },
 
     updateTeamRecords : function() {
-      // TODO: fix this
       if (this.gameMode === true) {
         var game = this.gameApiResult;
         if (game.isPostseason) {
           // Postseason: win-loss record in current series
-          var swlstr1 = game.team1SeriesW23L[0] + "-" + game.team1SeriesW23L[1];
-          var swlstr2 = game.team2SeriesW23L[0] + "-" + game.team2SeriesW23L[1];
-          var swlstr3 = game.team3SeriesW23L[0] + "-" + game.team3SeriesW23L[1];
-          var swlstr4 = game.team4SeriesW23L[0] + "-" + game.team4SeriesW23L[1];
-          this.element.team1wlrec.innerHTML = swlstr1;
-          this.element.team2wlrec.innerHTML = swlstr2;
-          this.element.team3wlrec.innerHTML = swlstr3;
-          this.element.team4wlrec.innerHTML = swlstr4;
+          var t1_swlstr = game.team1SeriesW23L[0] + "-" + game.team1SeriesW23L[1] + "-" + game.team1SeriesW23L[2] + "-" + game.team1SeriesW23L[3] + " (" + (11*game.team1SeriesW23L[0] + 7*game.team1SeriesW23L[1] + 3*game.team1SeriesW23L[2]) + ")";
+          var t2_swlstr = game.team2SeriesW23L[0] + "-" + game.team2SeriesW23L[1] + "-" + game.team2SeriesW23L[2] + "-" + game.team2SeriesW23L[3] + " (" + (11*game.team2SeriesW23L[0] + 7*game.team2SeriesW23L[1] + 3*game.team2SeriesW23L[2]) + ")";
+          var t3_swlstr = game.team3SeriesW23L[0] + "-" + game.team3SeriesW23L[1] + "-" + game.team3SeriesW23L[2] + "-" + game.team3SeriesW23L[3] + " (" + (11*game.team3SeriesW23L[0] + 7*game.team3SeriesW23L[1] + 3*game.team3SeriesW23L[2]) + ")";
+          var t4_swlstr = game.team4SeriesW23L[0] + "-" + game.team4SeriesW23L[1] + "-" + game.team4SeriesW23L[2] + "-" + game.team4SeriesW23L[3] + " (" + (11*game.team4SeriesW23L[0] + 7*game.team4SeriesW23L[1] + 3*game.team4SeriesW23L[2]) + ")";
+
+          this.element.team1wlrec.innerHTML = t1_swlstr;
+          this.element.team2wlrec.innerHTML = t2_swlstr;
+          this.element.team3wlrec.innerHTML = t3_swlstr;
+          this.element.team4wlrec.innerHTML = t4_swlstr;
+
         } else {
           // Season: win-loss record to date
-          var wlstr1 = game.team1W23L[0] + "-" + game.team1W23L[1] + "-" + game.team1W23L[2] + "-" + game.team1W23L[3];
-          var wlstr2 = game.team2W23L[0] + "-" + game.team2W23L[1] + "-" + game.team2W23L[2] + "-" + game.team2W23L[3];
-          var wlstr3 = game.team3W23L[0] + "-" + game.team3W23L[1] + "-" + game.team3W23L[2] + "-" + game.team3W23L[3];
-          var wlstr4 = game.team4W23L[0] + "-" + game.team4W23L[1] + "-" + game.team4W23L[2] + "-" + game.team4W23L[3];
-          this.element.team1wlrec.innerHTML = wlstr1;
-          this.element.team2wlrec.innerHTML = wlstr2;
-          this.element.team3wlrec.innerHTML = wlstr3;
-          this.element.team4wlrec.innerHTML = wlstr4;
+          var t1_wlstr = game.team1W23L[0] + "-" + game.team1W23L[1] + "-" + game.team1W23L[2] + "-" + game.team1W23L[3];
+          t1_wlstr += " (" + (11*game.team1W23L[0] + 7*game.team1W23L[1] + 3*game.team1W23L[2]) + ")";
+
+          var t2_wlstr = game.team2W23L[0] + "-" + game.team2W23L[1] + "-" + game.team2W23L[2] + "-" + game.team2W23L[3];
+          t2_wlstr += " (" + (11*game.team2W23L[0] + 7*game.team2W23L[1] + 3*game.team2W23L[2]) + ")";
+
+          var t3_wlstr = game.team3W23L[0] + "-" + game.team3W23L[1] + "-" + game.team3W23L[2] + "-" + game.team3W23L[3];
+          t3_wlstr += " (" + (11*game.team3W23L[0] + 7*game.team3W23L[1] + 3*game.team3W23L[2]) + ")";
+
+          var t4_wlstr = game.team4W23L[0] + "-" + game.team4W23L[1] + "-" + game.team4W23L[2] + "-" + game.team4W23L[3];
+          t4_wlstr += " (" + (11*game.team4W23L[0] + 7*game.team4W23L[1] + 3*game.team4W23L[2]) + ")";
+
+          this.element.team1wlrec.innerHTML = t1_wlstr;
+          this.element.team2wlrec.innerHTML = t2_wlstr;
+          this.element.team3wlrec.innerHTML = t3_wlstr;
+          this.element.team4wlrec.innerHTML = t4_wlstr;
+
         }
       } else {
         this.element.team1wlrecCont.remove();

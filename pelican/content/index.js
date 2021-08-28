@@ -512,25 +512,25 @@
               game.hasOwnProperty('team3Name') &&
               game.hasOwnProperty('team4Name')
             ) {
-              var t1tags = elem.getElementsByClassName('team1name');
-              var t2tags = elem.getElementsByClassName('team2name');
-              var t3tags = elem.getElementsByClassName('team3name');
-              var t4tags = elem.getElementsByClassName('team4name');
+              var t1_tags = elem.getElementsByClassName('team1name');
+              var t2_tags = elem.getElementsByClassName('team2name');
+              var t3_tags = elem.getElementsByClassName('team3name');
+              var t4_tags = elem.getElementsByClassName('team4name');
               var t;
-              for (t = 0; t < t1tags.length; t++) {
-                teamNameElem = t1tags[t];
+              for (t = 0; t < t1_tags.length; t++) {
+                teamNameElem = t1_tags[t];
                 teamNameElem.innerHTML = game.team1Name;
               }
-              for (t = 0; t < t2tags.length; t++) {
-                teamNameElem = t2tags[t];
+              for (t = 0; t < t2_tags.length; t++) {
+                teamNameElem = t2_tags[t];
                 teamNameElem.innerHTML = game.team2Name;
               }
-              for (t = 0; t < t3tags.length; t++) {
-                teamNameElem = t3tags[t];
+              for (t = 0; t < t3_tags.length; t++) {
+                teamNameElem = t3_tags[t];
                 teamNameElem.innerHTML = game.team3Name;
               }
-              for (t = 0; t < t4tags.length; t++) {
-                teamNameElem = t4tags[t];
+              for (t = 0; t < t4_tags.length; t++) {
+                teamNameElem = t4_tags[t];
                 teamNameElem.innerHTML = game.team4Name;
               }
             }
@@ -542,25 +542,25 @@
               game.hasOwnProperty('team3Color') &&
               game.hasOwnProperty('team4Color')
             ) {
-              var t1tags = elem.getElementsByClassName('team1color');
-              var t2tags = elem.getElementsByClassName('team2color');
-              var t3tags = elem.getElementsByClassName('team3color');
-              var t4tags = elem.getElementsByClassName('team4color');
+              var t1_tags = elem.getElementsByClassName('team1color');
+              var t2_tags = elem.getElementsByClassName('team2color');
+              var t3_tags = elem.getElementsByClassName('team3color');
+              var t4_tags = elem.getElementsByClassName('team4color');
               var t;
-              for (t = 0; t < t1tags.length; t++) {
-                teamColorElem = t1tags[t];
+              for (t = 0; t < t1_tags.length; t++) {
+                teamColorElem = t1_tags[t];
                 teamColorElem.style.color = game.team1Color;
               }
-              for (t = 0; t < t2tags.length; t++) {
-                teamColorElem = t2tags[t];
+              for (t = 0; t < t2_tags.length; t++) {
+                teamColorElem = t2_tags[t];
                 teamColorElem.style.color = game.team2Color;
               }
-              for (t = 0; t < t3tags.length; t++) {
-                teamColorElem = t3tags[t];
+              for (t = 0; t < t3_tags.length; t++) {
+                teamColorElem = t3_tags[t];
                 teamColorElem.style.color = game.team3Color;
               }
-              for (t = 0; t < t4tags.length; t++) {
-                teamColorElem = t4tags[t];
+              for (t = 0; t < t4_tags.length; t++) {
+                teamColorElem = t4_tags[t];
                 teamColorElem.style.color = game.team4Color;
               }
             }
@@ -576,25 +576,25 @@
               var w23lstr2 = "(" + game.team2WinLoss[0] + "-" + game.team2WinLoss[1] + game.team2WinLoss[2] + "-" + game.team2WinLoss[3] + ")";
               var w23lstr3 = "(" + game.team3WinLoss[0] + "-" + game.team3WinLoss[1] + game.team3WinLoss[2] + "-" + game.team3WinLoss[3] + ")";
               var w23lstr4 = "(" + game.team4WinLoss[0] + "-" + game.team4WinLoss[1] + game.team4WinLoss[2] + "-" + game.team4WinLoss[3] + ")";
-              var t1tags = elem.getElementsByClassName('team1record');
-              var t2tags = elem.getElementsByClassName('team2record');
-              var t3tags = elem.getElementsByClassName('team3record');
-              var t4tags = elem.getElementsByClassName('team4record');
+              var t1_tags = elem.getElementsByClassName('team1record');
+              var t2_tags = elem.getElementsByClassName('team2record');
+              var t3_tags = elem.getElementsByClassName('team3record');
+              var t4_tags = elem.getElementsByClassName('team4record');
               var t;
-              for (t = 0; t < t1tags.length; t++) {
-                teamWinLossElem = t1tags[t];
+              for (t = 0; t < t1_tags.length; t++) {
+                teamWinLossElem = t1_tags[t];
                 teamWinLossElem.innerHTML = w23lstr1;
               }
-              for (t = 0; t < t2tags.length; t++) {
-                teamWinLossElem = t2tags[t];
+              for (t = 0; t < t2_tags.length; t++) {
+                teamWinLossElem = t2_tags[t];
                 teamWinLossElem.innerHTML = w23lstr2;
               }
-              for (t = 0; t < t3tags.length; t++) {
-                teamWinLossElem = t3tags[t];
+              for (t = 0; t < t3_tags.length; t++) {
+                teamWinLossElem = t3_tags[t];
                 teamWinLossElem.innerHTML = w23lstr3;
               }
-              for (t = 0; t < t4tags.length; t++) {
-                teamWinLossElem = t4tags[t];
+              for (t = 0; t < t4_tags.length; t++) {
+                teamWinLossElem = t4_tags[t];
                 teamWinLossElem.innerHTML = w23lstr4;
               }
             }
@@ -775,7 +775,7 @@
 
               var game = currGamesApiResult[g];
               if (game.league==leagues[i]) {
-                var t1tags, t2tags, t3tags, t4tags, t, elem;
+                var t1_tags, t2_tags, t3_tags, t4_tags, t, elem;
                 var elem = document.getElementById(game.gameid);
                 if (elem!=null) {
 
@@ -788,50 +788,50 @@
                   ) {
 
                     // Team name labels
-                    t1tags = elem.getElementsByClassName('team1name');
-                    t2tags = elem.getElementsByClassName('team2name');
-                    t3tags = elem.getElementsByClassName('team3name');
-                    t4tags = elem.getElementsByClassName('team4name');
+                    t1_tags = elem.getElementsByClassName('team1name');
+                    t2_tags = elem.getElementsByClassName('team2name');
+                    t3_tags = elem.getElementsByClassName('team3name');
+                    t4_tags = elem.getElementsByClassName('team4name');
 
-                    for (var t = 0; t < t1tags.length; t++) {
-                      teamNameElem = t1tags[t];
+                    for (var t = 0; t < t1_tags.length; t++) {
+                      teamNameElem = t1_tags[t];
                       teamNameElem.innerHTML = game.team1Name;
                     }
-                    for (var t = 0; t < t2tags.length; t++) {
-                      teamNameElem = t2tags[t];
+                    for (var t = 0; t < t2_tags.length; t++) {
+                      teamNameElem = t2_tags[t];
                       teamNameElem.innerHTML = game.team2Name;
                     }
-                    for (var t = 0; t < t3tags.length; t++) {
-                      teamNameElem = t3tags[t];
+                    for (var t = 0; t < t3_tags.length; t++) {
+                      teamNameElem = t3_tags[t];
                       teamNameElem.innerHTML = game.team3Name;
                     }
-                    for (var t = 0; t < t4tags.length; t++) {
-                      teamNameElem = t4tags[t];
+                    for (var t = 0; t < t4_tags.length; t++) {
+                      teamNameElem = t4_tags[t];
                       teamNameElem.innerHTML = game.team4Name;
                     }
 
-                    var t1tags, t2tags;
-                    t1tags = elem.getElementsByClassName('team1seed');
-                    t2tags = elem.getElementsByClassName('team2seed');
-                    t3tags = elem.getElementsByClassName('team3seed');
-                    t4tags = elem.getElementsByClassName('team4seed');
+                    var t1_tags, t2_tags;
+                    t1_tags = elem.getElementsByClassName('team1seed');
+                    t2_tags = elem.getElementsByClassName('team2seed');
+                    t3_tags = elem.getElementsByClassName('team3seed');
+                    t4_tags = elem.getElementsByClassName('team4seed');
 
                     // Originally, we had seed, but that requires an extra API call
                     // Then we tried postseason win/loss, but that was too confusing
                     // Then we tried season win/loss and had errrors.
                     // So just forget it.
                     // TODO: Put seed number instead
-                    for (var t = 0; t < t1tags.length; t++) {
-                      t1tags[t].remove();
+                    for (var t = 0; t < t1_tags.length; t++) {
+                      t1_tags[t].remove();
                     }
-                    for (var t = 0; t < t2tags.length; t++) {
-                      t2tags[t].remove();
+                    for (var t = 0; t < t2_tags.length; t++) {
+                      t2_tags[t].remove();
                     }
-                    for (var t = 0; t < t3tags.length; t++) {
-                      t3tags[t].remove();
+                    for (var t = 0; t < t3_tags.length; t++) {
+                      t3_tags[t].remove();
                     }
-                    for (var t = 0; t < t4tags.length; t++) {
-                      t4tags[t].remove();
+                    for (var t = 0; t < t4_tags.length; t++) {
+                      t4_tags[t].remove();
                     }
 
                   } // end team names/records
@@ -860,28 +860,28 @@
                     game.hasOwnProperty('team3Color') &&
                     game.hasOwnProperty('team4Color')
                   ) {
-                    t1tags = elem.getElementsByClassName('team1color');
-                    t2tags = elem.getElementsByClassName('team2color');
-                    t3tags = elem.getElementsByClassName('team3color');
-                    t4tags = elem.getElementsByClassName('team4color');
+                    t1_tags = elem.getElementsByClassName('team1color');
+                    t2_tags = elem.getElementsByClassName('team2color');
+                    t3_tags = elem.getElementsByClassName('team3color');
+                    t4_tags = elem.getElementsByClassName('team4color');
 
                     var iT;
-                    for (iT = 0; iT < t1tags.length; iT++) {
-                      var teamColorElem = t1tags[iT];
+                    for (iT = 0; iT < t1_tags.length; iT++) {
+                      var teamColorElem = t1_tags[iT];
                       teamColorElem.style.color = game.team1Color;
                     }
-                    for (iT = 0; iT < t2tags.length; iT++) {
-                      var teamColorElem = t2tags[iT];
+                    for (iT = 0; iT < t2_tags.length; iT++) {
+                      var teamColorElem = t2_tags[iT];
                       teamColorElem.style.color = game.team2Color;
                     }
 
-                    for (iT = 0; iT < t3tags.length; iT++) {
-                      var teamColorElem = t3tags[iT];
+                    for (iT = 0; iT < t3_tags.length; iT++) {
+                      var teamColorElem = t3_tags[iT];
                       teamColorElem.style.color = game.team3Color;
                     }
 
-                    for (iT = 0; iT < t4tags.length; iT++) {
-                      var teamColorElem = t4tags[iT];
+                    for (iT = 0; iT < t4_tags.length; iT++) {
+                      var teamColorElem = t4_tags[iT];
                       teamColorElem.style.color = game.team4Color;
                     }
 
@@ -909,9 +909,6 @@
             }
 
 
-            // ###############################TODO##############################
-            // stopped here
-
             // Create a clone of the template
             var postTemplate = document.getElementById('scheduled-postgame-template');
             var cloneFragment = postTemplate.content.cloneNode(true);
@@ -930,7 +927,8 @@
           for (let g in currGamesApiResult) {
             var game = currGamesApiResult[g];
 
-            var t1tags, t2tags, t, elem;
+            var t1_tags, t2_tags, t3_tags, t4_tags;
+            var t, elem;
             elem = document.getElementById(game.gameid);
             if (elem != null) { 
 
@@ -938,31 +936,50 @@
               if (game.hasOwnProperty('team1Name') && game.hasOwnProperty('team2Name')) {
 
                 // Team name labels
-                t1tags = elem.getElementsByClassName('team1name');
-                t2tags = elem.getElementsByClassName('team2name');
-                for (let t in t1tags) {
-                  teamNameElem = t1tags[t];
+                t1_tags = elem.getElementsByClassName('team1name');
+                t2_tags = elem.getElementsByClassName('team2name');
+                t3_tags = elem.getElementsByClassName('team3name');
+                t4_tags = elem.getElementsByClassName('team4name');
+
+                for (let t in t1_tags) {
+                  teamNameElem = t1_tags[t];
                   teamNameElem.innerHTML = game.team1Name;
                 }
-                for (let t in t2tags) {
-                  teamNameElem = t2tags[t];
+                for (let t in t2_tags) {
+                  teamNameElem = t2_tags[t];
                   teamNameElem.innerHTML = game.team2Name;
                 }
+                for (let t in t3_tags) {
+                  teamNameElem = t3_tags[t];
+                  teamNameElem.innerHTML = game.team3Name;
+                }
+                for (let t in t4_tags) {
+                  teamNameElem = t4_tags[t];
+                  teamNameElem.innerHTML = game.team4Name;
+                }
 
-                var t1tags, t2tags;
-                t1tags = elem.getElementsByClassName('team1seed');
-                t2tags = elem.getElementsByClassName('team2seed');
+                var t1_tags, t2_tags, t3_tags, t4_tags;
+                t1_tags = elem.getElementsByClassName('team1seed');
+                t2_tags = elem.getElementsByClassName('team2seed');
+                t3_tags = elem.getElementsByClassName('team3seed');
+                t4_tags = elem.getElementsByClassName('team4seed');
 
                 // Originally, we had seed, but that requires an extra API call
                 // Then we tried postseason win/loss, but that was too confusing
                 // Then we tried season win/loss and had errrors.
                 // So just forget it.
                 // TODO: Put seed number instead
-                for (var t = 0; t < t1tags.length; t++) {
-                  t1tags[t].remove();
+                for (var t = 0; t < t1_tags.length; t++) {
+                  t1_tags[t].remove();
                 }
-                for (var t = 0; t < t2tags.length; t++) {
-                  t2tags[t].remove();
+                for (var t = 0; t < t2_tags.length; t++) {
+                  t2_tags[t].remove();
+                }
+                for (var t = 0; t < t3_tags.length; t++) {
+                  t3_tags[t].remove();
+                }
+                for (var t = 0; t < t4_tags.length; t++) {
+                  t4_tags[t].remove();
                 }
 
               } // end team names/records
@@ -986,15 +1003,27 @@
 
               // Team colors
               if (game.hasOwnProperty('team1Color') && game.hasOwnProperty('team2Color')) {
-                t1tags = elem.getElementsByClassName('team1color');
-                t2tags = elem.getElementsByClassName('team2color');
-                for (t = 0; t < t1tags.length; t++) {
-                  teamColorElem = t1tags[t];
+
+                t1_tags = elem.getElementsByClassName('team1color');
+                t2_tags = elem.getElementsByClassName('team2color');
+                t3_tags = elem.getElementsByClassName('team3color');
+                t4_tags = elem.getElementsByClassName('team4color');
+
+                for (t = 0; t < t1_tags.length; t++) {
+                  teamColorElem = t1_tags[t];
                   teamColorElem.style.color = game.team1Color;
                 }
-                for (t = 0; t < t2tags.length; t++) {
-                  teamColorElem = t2tags[t];
+                for (t = 0; t < t2_tags.length; t++) {
+                  teamColorElem = t2_tags[t];
                   teamColorElem.style.color = game.team2Color;
+                }
+                for (t = 0; t < t3_tags.length; t++) {
+                  teamColorElem = t3_tags[t];
+                  teamColorElem.style.color = game.team3Color;
+                }
+                for (t = 0; t < t4_tags.length; t++) {
+                  teamColorElem = t4_tags[t];
+                  teamColorElem.style.color = game.team4Color;
                 }
               }
 
@@ -1036,10 +1065,10 @@
         var leagues = Array.from(leaguesSet);
         leagues.sort();
 
-        if ((mode==31) || (mode==32)) {
+        if (mode==32) {
 
           /////////////////////////////////////////////
-          // Division Series and Championship Series
+          // Championship Series
           // In progress
 
           // Get references to league containers and name labels
@@ -1095,7 +1124,8 @@
             for (let g in currGamesApiResult) {
               var game = currGamesApiResult[g];
               if (game.league==leagues[i]) {
-                var t1tags, t2tags, t, elem;
+                var t1_tags, t2_tags, t3_tags, t4_tags;
+                var t, elem;
                 elem = document.getElementById(game.gameid);
                 if (elem!=null) {
 
@@ -1103,55 +1133,55 @@
                   if (game.hasOwnProperty('team1Name') && game.hasOwnProperty('team2Name')) {
 
                     // Team name labels
-                    t1tags = elem.getElementsByClassName('team1name');
-                    for (let t in t1tags) {
-                      t1tags[t].innerHTML = game.team1Name;
+                    t1_tags = elem.getElementsByClassName('team1name');
+                    for (let t in t1_tags) {
+                      t1_tags[t].innerHTML = game.team1Name;
                     }
 
-                    t2tags = elem.getElementsByClassName('team2name');
-                    for (let t in t2tags) {
-                      t2tags[t].innerHTML = game.team2Name;
+                    t2_tags = elem.getElementsByClassName('team2name');
+                    for (let t in t2_tags) {
+                      t2_tags[t].innerHTML = game.team2Name;
                     }
 
-                    t3tags = elem.getElementsByClassName('team3name');
-                    for (let t in t3tags) {
-                      t3tags[t].innerHTML = game.team3Name;
+                    t3_tags = elem.getElementsByClassName('team3name');
+                    for (let t in t3_tags) {
+                      t3_tags[t].innerHTML = game.team3Name;
                     }
 
-                    t4tags = elem.getElementsByClassName('team4name');
-                    for (let t in t4tags) {
-                      t4tags[t].innerHTML = game.team4Name;
+                    t4_tags = elem.getElementsByClassName('team4name');
+                    for (let t in t4_tags) {
+                      t4_tags[t].innerHTML = game.team4Name;
                     }
 
                     // Series W-L
-                    var t1tags = elem.getElementsByClassName('team1seed');
-                    var t2tags = elem.getElementsByClassName('team2seed');
-                    var t3tags = elem.getElementsByClassName('team3seed');
-                    var t4tags = elem.getElementsByClassName('team4seed');
+                    var t1_tags = elem.getElementsByClassName('team1seed');
+                    var t2_tags = elem.getElementsByClassName('team2seed');
+                    var t3_tags = elem.getElementsByClassName('team3seed');
+                    var t4_tags = elem.getElementsByClassName('team4seed');
 
-                    var t1w23l = game['team1SeriesW23L'];
-                    var t1w23lstr = t1w23l[0] + '-' + t1w23l[1] + '-' + t1w23l[2] + '-' + t1w23l[3];
+                    var t1_w23l = game['team1SeriesW23L'];
+                    var t1_w23lstr = t1_w23l[0] + '-' + t1_w23l[1] + '-' + t1_w23l[2] + '-' + t1_w23l[3];
 
-                    var t2w23l = game['team2SeriesW23L'];
-                    var t2w23lstr = t2w23l[0] + '-' + t2w23l[1] + '-' + t2w23l[2] + '-' + t2w23l[3];
+                    var t2_w23l = game['team2SeriesW23L'];
+                    var t2_w23lstr = t2_w23l[0] + '-' + t2_w23l[1] + '-' + t2_w23l[2] + '-' + t2_w23l[3];
 
-                    var t3w23l = game['team3SeriesW23L'];
-                    var t3w23lstr = t2w23l[0] + '-' + t2w23l[1] + '-' + t2w23l[2] + '-' + t2w23l[3];
+                    var t3_w23l = game['team3SeriesW23L'];
+                    var t3_w23lstr = t3_w23l[0] + '-' + t3_w23l[1] + '-' + t3_w23l[2] + '-' + t3_w23l[3];
 
-                    var t4w23l = game['team4SeriesW23L'];
-                    var t4w23lstr = t2w23l[0] + '-' + t2w23l[1] + '-' + t2w23l[2] + '-' + t2w23l[3];
+                    var t4_w23l = game['team4SeriesW23L'];
+                    var t4_w23lstr = t4_w23l[0] + '-' + t4_w23l[1] + '-' + t4_w23l[2] + '-' + t4_w23l[3];
 
-                    for (let t in t1tags) {
-                      t1tags[t].innerHTML = "(" + t1w23l + ")";
+                    for (let t in t1_tags) {
+                      t1_tags[t].innerHTML = "(" + t1_w23lstr + ")";
                     }
-                    for (let t in t2tags) {
-                      t2tags[t].innerHTML = "(" + t2w23l + ")";
+                    for (let t in t2_tags) {
+                      t2_tags[t].innerHTML = "(" + t2_w23lstr + ")";
                     }
-                    for (let t in t3tags) {
-                      t3tags[t].innerHTML = "(" + t3w23l + ")";
+                    for (let t in t3_tags) {
+                      t3_tags[t].innerHTML = "(" + t3_w23lstr + ")";
                     }
-                    for (let t in t4tags) {
-                      t4tags[t].innerHTML = "(" + t4w23l + ")";
+                    for (let t in t4_tags) {
+                      t4_tags[t].innerHTML = "(" + t4_w23lstr + ")";
                     }
 
                   } // end team names/records
@@ -1177,27 +1207,27 @@
 
                   // Team colors
                   if (game.hasOwnProperty('team1Color') && game.hasOwnProperty('team2Color')) {
-                    t1tags = elem.getElementsByClassName('team1color');
-                    for (t = 0; t < t1tags.length; t++) {
-                      var teamColorElem = t1tags[t];
+                    t1_tags = elem.getElementsByClassName('team1color');
+                    for (t = 0; t < t1_tags.length; t++) {
+                      var teamColorElem = t1_tags[t];
                       teamColorElem.style.color = game.team1Color;
                     }
 
-                    t2tags = elem.getElementsByClassName('team2color');
-                    for (t = 0; t < t2tags.length; t++) {
-                      var teamColorElem = t2tags[t];
+                    t2_tags = elem.getElementsByClassName('team2color');
+                    for (t = 0; t < t2_tags.length; t++) {
+                      var teamColorElem = t2_tags[t];
                       teamColorElem.style.color = game.team2Color;
                     }
 
-                    t3tags = elem.getElementsByClassName('team3color');
-                    for (t = 0; t < t3tags.length; t++) {
-                      var teamColorElem = t3tags[t];
+                    t3_tags = elem.getElementsByClassName('team3color');
+                    for (t = 0; t < t3_tags.length; t++) {
+                      var teamColorElem = t3_tags[t];
                       teamColorElem.style.color = game.team3Color;
                     }
 
-                    t4tags = elem.getElementsByClassName('team4color');
-                    for (t = 0; t < t4tags.length; t++) {
-                      var teamColorElem = t4tags[t];
+                    t4_tags = elem.getElementsByClassName('team4color');
+                    for (t = 0; t < t4_tags.length; t++) {
+                      var teamColorElem = t4_tags[t];
                       teamColorElem.style.color = game.team4Color;
                     }
                   }
@@ -1248,7 +1278,8 @@
           // Now populate the div
           for (g = 0; g < currGamesApiResult.length; g++) {
             var game;
-            var t1tags, t2tags, t, elem;
+            var t1_tags, t2_tags, t3_tags, t4_tags;
+            var t, elem;
 
             game = currGamesApiResult[g];
             elem = document.getElementById(game.gameid);
@@ -1257,33 +1288,61 @@
             if (game.hasOwnProperty('team1Name') && game.hasOwnProperty('team2Name')) {
 
               // Team name labels
-              t1tags = elem.getElementsByClassName('team1name');
-              t2tags = elem.getElementsByClassName('team2name');
-              for (t = 0; t < t1tags.length; t++) {
-                teamNameElem = t1tags[t];
+              t1_tags = elem.getElementsByClassName('team1name');
+              t2_tags = elem.getElementsByClassName('team2name');
+              t3_tags = elem.getElementsByClassName('team3name');
+              t4_tags = elem.getElementsByClassName('team4name');
+
+              for (t = 0; t < t1_tags.length; t++) {
+                teamNameElem = t1_tags[t];
                 teamNameElem.innerHTML = game.team1Name;
               }
-              for (t = 0; t < t2tags.length; t++) {
-                teamNameElem = t2tags[t];
+              for (t = 0; t < t2_tags.length; t++) {
+                teamNameElem = t2_tags[t];
                 teamNameElem.innerHTML = game.team2Name;
+              }
+              for (t = 0; t < t3_tags.length; t++) {
+                teamNameElem = t3_tags[t];
+                teamNameElem.innerHTML = game.team3Name;
+              }
+              for (t = 0; t < t4_tags.length; t++) {
+                teamNameElem = t4_tags[t];
+                teamNameElem.innerHTML = game.team4Name;
               }
 
               // Series W-L
-              var t1tags, t2tags;
-              t1tags = elem.getElementsByClassName('team1seed');
-              t2tags = elem.getElementsByClassName('team2seed');
+              var t1_tags, t2_tags, t3_tags, t4_tags;
+              t1_tags = elem.getElementsByClassName('team1seed');
+              t2_tags = elem.getElementsByClassName('team2seed');
+              t3_tags = elem.getElementsByClassName('team3seed');
+              t4_tags = elem.getElementsByClassName('team4seed');
 
-              var w23l, t1w23l, t2w23l;
+              var w23l;
+              var t1_w23l, t2_w23l, t3_w23l, t4_w23l;
+
               w23l = game['team1SeriesW23L'];
-              t1w23l = w23l[0] + '-' + w23l[1] + '-' + w23l[2] + '-' + w23l[3];
-              w23l = game['team2SeriesW23L'];
-              t2w23l = w23l[0] + '-' + w23l[1] + '-' + w23l[2] + '-' + w23l[3]; 
+              t1_w23l = w23l[0] + '-' + w23l[1] + '-' + w23l[2] + '-' + w23l[3];
 
-              for (let t in t1tags) {
-                t1tags[t].innerHTML = "(" + t1w23l + ")";
+              w23l = game['team2SeriesW23L'];
+              t2_w23l = w23l[0] + '-' + w23l[1] + '-' + w23l[2] + '-' + w23l[3]; 
+
+              w23l = game['team3SeriesW23L'];
+              t3_w23l = w23l[0] + '-' + w23l[1] + '-' + w23l[2] + '-' + w23l[3]; 
+
+              w23l = game['team4SeriesW23L'];
+              t4_w23l = w23l[0] + '-' + w23l[1] + '-' + w23l[2] + '-' + w23l[3]; 
+
+              for (let t in t1_tags) {
+                t1_tags[t].innerHTML = "(" + t1_w23l + ")";
               }
-              for (let t in t2tags) {
-                t2tags[t].innerHTML = "(" + t2w23l + ")";
+              for (let t in t2_tags) {
+                t2_tags[t].innerHTML = "(" + t2_w23l + ")";
+              }
+              for (let t in t3_tags) {
+                t3_tags[t].innerHTML = "(" + t3_w23l + ")";
+              }
+              for (let t in t4_tags) {
+                t4_tags[t].innerHTML = "(" + t4_w23l + ")";
               }
 
             } // end team names/records
@@ -1311,15 +1370,26 @@
 
             // Team colors
             if (game.hasOwnProperty('team1Color') && game.hasOwnProperty('team2Color')) {
-              t1tags = elem.getElementsByClassName('team1color');
-              t2tags = elem.getElementsByClassName('team2color');
-              for (t = 0; t < t1tags.length; t++) {
-                teamColorElem = t1tags[t];
+              t1_tags = elem.getElementsByClassName('team1color');
+              t2_tags = elem.getElementsByClassName('team2color');
+              t3_tags = elem.getElementsByClassName('team3color');
+              t4_tags = elem.getElementsByClassName('team4color');
+
+              for (t = 0; t < t1_tags.length; t++) {
+                teamColorElem = t1_tags[t];
                 teamColorElem.style.color = game.team1Color;
               }
-              for (t = 0; t < t2tags.length; t++) {
-                teamColorElem = t2tags[t];
+              for (t = 0; t < t2_tags.length; t++) {
+                teamColorElem = t2_tags[t];
                 teamColorElem.style.color = game.team2Color;
+              }
+              for (t = 0; t < t3_tags.length; t++) {
+                teamColorElem = t3_tags[t];
+                teamColorElem.style.color = game.team3Color;
+              }
+              for (t = 0; t < t4_tags.length; t++) {
+                teamColorElem = t4_tags[t];
+                teamColorElem.style.color = game.team4Color;
               }
             }
 
