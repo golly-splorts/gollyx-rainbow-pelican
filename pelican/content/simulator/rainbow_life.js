@@ -843,8 +843,10 @@
             for (icol = 0 ; icol < state2[irow][y].length ; icol++) {
               var yy = parseInt(y);
               var xx = state2[irow][yy][icol];
-              this.listLife.addCell(xx, yy, this.listLife.actualState);
-              this.listLife.addCell(xx, yy, this.listLife.actualState2);
+              if (!this.listLife.isAlive(xx, yy)) {
+                this.listLife.addCell(xx, yy, this.listLife.actualState);
+                this.listLife.addCell(xx, yy, this.listLife.actualState2);
+              }
             }
           }
         }
@@ -861,8 +863,10 @@
             for (icol = 0 ; icol < state3[irow][y].length ; icol++) {
               var yy = parseInt(y);
               var xx = state3[irow][yy][icol];
-              this.listLife.addCell(xx, yy, this.listLife.actualState);
-              this.listLife.addCell(xx, yy, this.listLife.actualState3);
+              if (!this.listLife.isAlive(xx, yy)) {
+                this.listLife.addCell(xx, yy, this.listLife.actualState);
+                this.listLife.addCell(xx, yy, this.listLife.actualState3);
+              }
             }
           }
         }
@@ -879,8 +883,10 @@
             for (icol = 0 ; icol < state4[irow][y].length ; icol++) {
               var yy = parseInt(y);
               var xx = state4[irow][yy][icol];
-              this.listLife.addCell(xx, yy, this.listLife.actualState);
-              this.listLife.addCell(xx, yy, this.listLife.actualState4);
+              if (!this.listLife.isAlive(xx, yy)) {
+                this.listLife.addCell(xx, yy, this.listLife.actualState);
+                this.listLife.addCell(xx, yy, this.listLife.actualState4);
+              }
             }
           }
         }
@@ -1119,22 +1125,15 @@
 
         } else {
           // Season: win-loss record to date
-          var t1_wlstr = game.team1W23L[0] + "-" + game.team1W23L[1] + "-" + game.team1W23L[2] + "-" + game.team1W23L[3];
-          t1_wlstr += " (" + (11*game.team1W23L[0] + 7*game.team1W23L[1] + 3*game.team1W23L[2]) + ")";
+          var t1_swlstr = game.team1W23L[0] + "-" + game.team1W23L[1] + "-" + game.team1W23L[2] + "-" + game.team1W23L[3] + "<br />" + (11*game.team1W23L[0] + 7*game.team1W23L[1] + 3*game.team1W23L[2]) + " 🌈";
+          var t2_swlstr = game.team2W23L[0] + "-" + game.team2W23L[1] + "-" + game.team2W23L[2] + "-" + game.team2W23L[3] + "<br />" + (11*game.team2W23L[0] + 7*game.team2W23L[1] + 3*game.team2W23L[2]) + " 🌈";
+          var t3_swlstr = game.team3W23L[0] + "-" + game.team3W23L[1] + "-" + game.team3W23L[2] + "-" + game.team3W23L[3] + "<br />" + (11*game.team3W23L[0] + 7*game.team3W23L[1] + 3*game.team3W23L[2]) + " 🌈";
+          var t4_swlstr = game.team4W23L[0] + "-" + game.team4W23L[1] + "-" + game.team4W23L[2] + "-" + game.team4W23L[3] + "<br />" + (11*game.team4W23L[0] + 7*game.team4W23L[1] + 3*game.team4W23L[2]) + " 🌈";
 
-          var t2_wlstr = game.team2W23L[0] + "-" + game.team2W23L[1] + "-" + game.team2W23L[2] + "-" + game.team2W23L[3];
-          t2_wlstr += " (" + (11*game.team2W23L[0] + 7*game.team2W23L[1] + 3*game.team2W23L[2]) + ")";
-
-          var t3_wlstr = game.team3W23L[0] + "-" + game.team3W23L[1] + "-" + game.team3W23L[2] + "-" + game.team3W23L[3];
-          t3_wlstr += " (" + (11*game.team3W23L[0] + 7*game.team3W23L[1] + 3*game.team3W23L[2]) + ")";
-
-          var t4_wlstr = game.team4W23L[0] + "-" + game.team4W23L[1] + "-" + game.team4W23L[2] + "-" + game.team4W23L[3];
-          t4_wlstr += " (" + (11*game.team4W23L[0] + 7*game.team4W23L[1] + 3*game.team4W23L[2]) + ")";
-
-          this.element.team1wlrec.innerHTML = t1_wlstr;
-          this.element.team2wlrec.innerHTML = t2_wlstr;
-          this.element.team3wlrec.innerHTML = t3_wlstr;
-          this.element.team4wlrec.innerHTML = t4_wlstr;
+          this.element.team1wlrec.innerHTML = t1_swlstr;
+          this.element.team2wlrec.innerHTML = t2_swlstr;
+          this.element.team3wlrec.innerHTML = t3_swlstr;
+          this.element.team4wlrec.innerHTML = t4_swlstr;
 
         }
       } else {
