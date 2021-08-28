@@ -93,7 +93,7 @@
 
     processStandingsData : function(season0) {
 
-      // TODO: /leagueStructure should take a season parameter
+      // TODO: stopped here.
 
       // Load the league standings
       let recordsUrl = this.baseApiUrl + '/standings';
@@ -126,13 +126,38 @@
 
               // Set the division name on the page
               var divisionNameId = 'league-' + iLp1 + '-division-' + iDp1 + '-name';
-              console.log(divisionNameId);
               var divisionNameElem = document.getElementById(divisionNameId);
               divisionNameElem.innerHTML = division;
 
-              // Create the <ul> and <li> elements for the division team ranking list
-              var ulElemId = 'league-' + iLp1 + '-division-' + iDp1 + '-ul';
-              var ulElem = document.getElementById(ulElemId);
+              var divisionTableId = "league-" + iLp1 + "-division-" + iDp1 + "-table";
+              var divisionTableElem = document.getElementById(divisionTableId);
+
+              /////////////////////////////////
+              // Add a table header 
+              // (append to divisionTableElem)
+              //
+              // <thead>
+              //   <th>
+              //     <span> name
+              //
+              //   <th>
+              //     <span>W-2-3-L record
+              //
+              //   <th>
+              //     <span>n rainbows
+
+              var theadElem = document.createElement('thead');
+              var thElem1 = document.createElement('th');
+              var thElem2 = document.createElement('th');
+              var thElem3 = document.createElement('th');
+
+              thElem1.innerHTML = 'Name';
+              thElem2.innerHTML = 'Record';
+              thElem3.innerHTML = 'Rainbows';
+              theadElem.appendChild(thElem1);
+              theadElem.appendChild(thElem2);
+              theadElem.appendChild(thElem3);
+              divisionTableElem.appendChild(theadElem);
 
               // Now use the structured league/division nested dictionary
               teamStandingsItems = standingsApiResult.rankings[league][division];
@@ -143,28 +168,28 @@
                 var teamStandings = teamStandingsItems[iS];
 
                 /////////////////////////////////
-                // Add an entry for each team 
-                // to the league standings page
+                // Add a table row for each team 
+                // (append to divisionTableElem)
                 //
-                // <li>
-                //     <span>
-                //         (icon)
-                //         (team name)
-                //     </span>
-                //     <span>
-                //          (team win/loss record)
-                //     </span>
-                // </li>
+                // <tr>
+                //   <td>
+                //     <span> icon
+                //     <span> team name
+                //
+                //   <td>
+                //     <span>W-2-3-L record
+                //
+                //   <td>
+                //     <span>n rainbows
 
-                // Add an li element for this team
-                var liElem = document.createElement('li');
-                liElem.classList.add('list-group-item');
-                liElem.classList.add('d-flex');
-                liElem.classList.add('justify-content-between');
-                liElem.classList.add('align-items-center');
+                // Add a tr element for this team
+                var trElem = document.createElement('tr');
 
                 // ----------------
-                // Left side: name + icon in a single span
+                // Name column: name + icon in a single span
+
+                var tdElem = document.createElement('td');
+
                 var nameiconId = 'league-name-icon-holder';
                 var nameicon = document.createElement('span');
                 nameicon.setAttribute('id', nameiconId);
@@ -218,21 +243,44 @@
                 nameSpanElem.style.color = teamStandings.teamColor;
                 nameicon.appendChild(nameSpanElem);
 
-                // Attach to left side
-                liElem.appendChild(nameicon);
+                // Finish column 1 of table row
+                tdElem.appendChild(nameicon);
+                trElem.appendChild(tdElem);
 
                 // ----------------
-                // Right side: win-loss record
-                var wlElem = document.createElement('span');
-                wlElem.classList.add('standings-record');
-                //var winLossStr = teamStandings.teamWinLoss[0] + "-" + teamStandings.teamWinLoss[1];
-                var winLossStr = teamStandings.teamW23L[0] + "-" + teamStandings.teamW23L[1] + "-" + teamStandings.teamW23L[2] + "-" + teamStandings.teamW23L[3];
-                wlElem.innerHTML = winLossStr;
+                // W23L column: W-2-3-L
 
-                // Attach to right side
-                liElem.appendChild(wlElem);
+                var tdElem2 = document.createElement('td');
+                tdElem2.classList.add('align-items-center');
+                tdElem2.classList.add('text-center');
 
-                ulElem.appendChild(liElem);
+                var w23lElem = document.createElement('span');
+                w23lElem.classList.add('standings-w23lrecord');
+
+                var w23lStr = teamStandings.teamW23L[0] + "-" + teamStandings.teamW23L[1] + "-" + teamStandings.teamW23L[2] + "-" + teamStandings.teamW23L[3];
+                w23lElem.innerHTML = w23lStr;
+
+                tdElem2.appendChild(w23lElem);
+                trElem.appendChild(tdElem2);
+
+                // ----------------
+                // Rainbows column
+
+                var tdElem3 = document.createElement('td');
+                tdElem3.classList.add('align-items-center');
+                tdElem3.classList.add('text-center');
+
+                var rainElem = document.createElement('span');
+                rainElem.classList.add('standings-rainbows');
+
+                var rainbows = 11*teamStandings.teamW23L[0] + 7*teamStandings.teamW23L[1] + 3*teamStandings.teamW23L[2];
+                rainElem.innerHTML = rainbows;
+
+                tdElem3.appendChild(rainElem);
+                trElem.appendChild(tdElem3);
+
+                // Now add the row to the table
+                divisionTableElem.appendChild(trElem);
 
               }
 
