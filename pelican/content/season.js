@@ -446,15 +446,15 @@
 
           // Assemble team W-L records
           if (
-            game.hasOwnProperty('team1WinLoss') && 
-            game.hasOwnProperty('team2WinLoss') && 
-            game.hasOwnProperty('team3WinLoss') && 
-            game.hasOwnProperty('team4WinLoss')
+            game.hasOwnProperty('team1W23L') && 
+            game.hasOwnProperty('team2W23L') && 
+            game.hasOwnProperty('team3W23L') && 
+            game.hasOwnProperty('team4W23L')
           ) {
-            var wlstr1 = "(" + game.team1W23L[0] + "-" + game.team1W23L[1] + "-" + game.team1W23L[2] + "-" + game.team1W23L[3] + ")";
-            var wlstr2 = "(" + game.team2W23L[0] + "-" + game.team2W23L[1] + "-" + game.team2W23L[2] + "-" + game.team2W23L[3] + ")";
-            var wlstr3 = "(" + game.team3W23L[0] + "-" + game.team3W23L[1] + "-" + game.team3W23L[2] + "-" + game.team3W23L[3] + ")";
-            var wlstr4 = "(" + game.team4W23L[0] + "-" + game.team4W23L[1] + "-" + game.team4W23L[2] + "-" + game.team4W23L[3] + ")";
+            var t1_wlstr = "(" + game.team1W23L[0] + "-" + game.team1W23L[1] + "-" + game.team1W23L[2] + "-" + game.team1W23L[3] + ", " + (11*game.team1W23L[0] + 7*game.team1W23L[1] + 3*game.team1W23L[2]) + "🌈)";
+            var t2_wlstr = "(" + game.team2W23L[0] + "-" + game.team2W23L[1] + "-" + game.team2W23L[2] + "-" + game.team2W23L[3] + ", " + (11*game.team2W23L[0] + 7*game.team2W23L[1] + 3*game.team2W23L[2]) + "🌈)";
+            var t3_wlstr = "(" + game.team3W23L[0] + "-" + game.team3W23L[1] + "-" + game.team3W23L[2] + "-" + game.team3W23L[3] + ", " + (11*game.team3W23L[0] + 7*game.team3W23L[1] + 3*game.team3W23L[2]) + "🌈)";
+            var t4_wlstr = "(" + game.team4W23L[0] + "-" + game.team4W23L[1] + "-" + game.team4W23L[2] + "-" + game.team4W23L[3] + ", " + (11*game.team4W23L[0] + 7*game.team4W23L[1] + 3*game.team4W23L[2]) + "🌈)";
 
             var t1tags = elem.getElementsByClassName('team1record');
             var t2tags = elem.getElementsByClassName('team2record');
@@ -464,19 +464,19 @@
             var t;
             for (t = 0; t < t1tags.length; t++) {
               teamWinLossElem = t1tags[t];
-              teamWinLossElem.innerHTML = wlstr1;
+              teamWinLossElem.innerHTML = t1_wlstr;
             }
             for (t = 0; t < t2tags.length; t++) {
               teamWinLossElem = t2tags[t];
-              teamWinLossElem.innerHTML = wlstr2;
+              teamWinLossElem.innerHTML = t2_wlstr;
             }
             for (t = 0; t < t3tags.length; t++) {
               teamWinLossElem = t3tags[t];
-              teamWinLossElem.innerHTML = wlstr3;
+              teamWinLossElem.innerHTML = t3_wlstr;
             }
             for (t = 0; t < t4tags.length; t++) {
               teamWinLossElem = t4tags[t];
-              teamWinLossElem.innerHTML = wlstr4;
+              teamWinLossElem.innerHTML = t4_wlstr;
             }
           }
 
@@ -491,6 +491,7 @@
             var t2s = game.team2Score;
             var t3s = game.team3Score;
             var t4s = game.team4Score;
+
             var iE;
             var t1ScoreElems = elem.getElementsByClassName('livecells1');
             for (iE = 0; iE < t1ScoreElems.length; iE++) {

@@ -273,7 +273,7 @@
                 var rainElem = document.createElement('span');
                 rainElem.classList.add('standings-rainbows');
 
-                var rainbows = 11*teamStandings.teamW23L[0] + 7*teamStandings.teamW23L[1] + 3*teamStandings.teamW23L[2];
+                var rainbows = (11*teamStandings.teamW23L[0] + 7*teamStandings.teamW23L[1] + 3*teamStandings.teamW23L[2]) + "🌈";
                 rainElem.innerHTML = rainbows;
 
                 tdElem3.appendChild(rainElem);

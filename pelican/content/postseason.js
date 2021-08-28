@@ -14,7 +14,7 @@
       'season-header-container',
       'postseason-toc-container',
       'postseason-champion-container',
-      'postseason-hcs-container',
+      'postseason-rcs-container',
       'postseason-lcs-container',
       'postseason-lds-container'
     ],
@@ -196,8 +196,8 @@
               this.fillLdsSeriesContainer(postseasonApiResult[series]);
             } else if (lower=='lcs') {
               this.fillLcsSeriesContainer(postseasonApiResult[series]);
-            } else if (lower=='hcs') {
-              this.fillHcsSeriesContainer(postseasonApiResult[series]);
+            } else if (lower=='rcs') {
+              this.fillRcsSeriesContainer(postseasonApiResult[series]);
             }
           }
         } // end for each series
@@ -209,68 +209,6 @@
         this.error(-1);
       });
 
-    },
-
-    /**
-     * Fill the LDS game containers for each league.
-     */
-    fillLdsSeriesContainer : function(miniseason) {
-
-      var container = document.getElementById('postseason-lds-container');
-
-      if (this.leagues==null) {
-        this.getLeagueNames(miniseason);
-      }
-
-      var nDivSeries = 2;
-      var seriesNameId, seriesNameElem, seriesName, leagueName, seriesContainerElem;
-      var iL;
-      for (iL = 0; iL < this.leagues.length; iL++) {
-        for (iS = 0; iS < nDivSeries; iS++) {
-
-          seriesIdBase = 'lds-league-' + (iL+1) + '-series-' + (iS+1);
-          seriesNameId = seriesIdBase + '-name';
-          seriesNameElem = document.getElementById(seriesNameId);
-
-          leagueName = this.leagues[iL];
-          seriesName = leagueName + ' Division Series ' + (iS + 1);
-          if (seriesNameElem != null) {
-            seriesNameElem.innerHTML = seriesName;
-          }
-
-          seriesContainerId = seriesIdBase + '-container';
-          seriesContainerElem = document.getElementById(seriesContainerId);
-
-          if (seriesContainerElem != null) {
-            this.populateLdsGames(miniseason, seriesContainerElem, iL, iS);
-          }
-
-        }
-      }
-
-      container.classList.remove('invisible');
-    },
-
-    /**
-     * Populate an LDS series container with games.
-     */
-    populateLdsGames : function(miniseason, seriesContainerElem, iLeague, iSeries) {
-      var league = this.leagues[iLeague];
-      var seriesMatchText = "Series " + (iSeries + 1);
-
-      var iDay;
-      for (iDay = 0; iDay < miniseason.length; iDay++) {
-        var miniday = miniseason[iDay];
-        var iGame;
-        for (iGame = 0; iGame < miniday.length; iGame++) {
-          var minigame = miniday[iGame];
-          if (minigame.league == league) {
-            if (minigame.description.match(seriesMatchText)) {
-              this.populateGamesHelper(minigame, seriesContainerElem);
-            } // end if this game matches the series number
-          } // end if this game matches the league
-        } // end for each game
-      } // end for each day
     },
 
     /**
@@ -330,19 +268,19 @@
     },
 
     /**
-     * Fill the HCS game container (only one)
+     * Fill the RCS game container (only one)
      */
-    fillHcsSeriesContainer : function(miniseason) {
-      var container = document.getElementById('postseason-hcs-container');
-      var leagueContainer = document.getElementById('hcs-league-container');
-      this.populateHcsGames(miniseason, leagueContainer);
+    fillRcsSeriesContainer : function(miniseason) {
+      var container = document.getElementById('postseason-rcs-container');
+      var leagueContainer = document.getElementById('rcs-league-container');
+      this.populateRcsGames(miniseason, leagueContainer);
       container.classList.remove('invisible');
     },
 
     /**
-     * Populate a HCS series container with games.
+     * Populate a RCS series container with games.
      */
-    populateHcsGames : function(miniseason, seriesContainerElem) {
+    populateRcsGames : function(miniseason, seriesContainerElem) {
       var iDay;
       for (iDay = 0; iDay < miniseason.length; iDay++) {
         var miniday = miniseason[iDay];
@@ -467,33 +405,67 @@
 
         // --------------
         // Team name labels:
-        if (minigame.hasOwnProperty('team1Name') && minigame.hasOwnProperty('team2Name')) {
-          var t1tags = elem.getElementsByClassName('team1name');
-          var t2tags = elem.getElementsByClassName('team2name');
+
+        if (
+          minigame.hasOwnProperty('team1Name') && 
+          minigame.hasOwnProperty('team2Name') && 
+          minigame.hasOwnProperty('team3Name') && 
+          minigame.hasOwnProperty('team4Name')
+        ) {
+          var t1_tags = elem.getElementsByClassName('team1name');
+          var t2_tags = elem.getElementsByClassName('team2name');
+          var t3_tags = elem.getElementsByClassName('team3name');
+          var t4_tags = elem.getElementsByClassName('team4name');
+
           var t;
-          for (t = 0; t < t1tags.length; t++) {
-            teamNameElem = t1tags[t];
+          for (t = 0; t < t1_tags.length; t++) {
+            teamNameElem = t1_tags[t];
             teamNameElem.innerHTML = minigame.team1Name;
           }
-          for (t = 0; t < t2tags.length; t++) {
-            teamNameElem = t2tags[t];
+          for (t = 0; t < t2_tags.length; t++) {
+            teamNameElem = t2_tags[t];
             teamNameElem.innerHTML = minigame.team2Name;
+          }
+          for (t = 0; t < t3_tags.length; t++) {
+            teamNameElem = t3_tags[t];
+            console.log(minigame.team3Name);
+            teamNameElem.innerHTML = minigame.team3Name;
+          }
+          for (t = 0; t < t4_tags.length; t++) {
+            teamNameElem = t4_tags[t];
+            teamNameElem.innerHTML = minigame.team4Name;
           }
         }
 
         // --------------
         // Team colors
-        if (minigame.hasOwnProperty('team1Color') && minigame.hasOwnProperty('team2Color')) {
-          var t1tags = elem.getElementsByClassName('team1color');
-          var t2tags = elem.getElementsByClassName('team2color');
+        if (
+          minigame.hasOwnProperty('team1Color') && 
+          minigame.hasOwnProperty('team2Color') && 
+          minigame.hasOwnProperty('team3Color') && 
+          minigame.hasOwnProperty('team4Color')
+        ) {
+          var t1_tags = elem.getElementsByClassName('team1color');
+          var t2_tags = elem.getElementsByClassName('team2color');
+          var t3_tags = elem.getElementsByClassName('team3color');
+          var t4_tags = elem.getElementsByClassName('team4color');
+
           var t;
-          for (t = 0; t < t1tags.length; t++) {
-            teamColorElem = t1tags[t];
+          for (t = 0; t < t1_tags.length; t++) {
+            teamColorElem = t1_tags[t];
             teamColorElem.style.color = minigame.team1Color;
           }
-          for (t = 0; t < t2tags.length; t++) {
-            teamColorElem = t2tags[t];
+          for (t = 0; t < t2_tags.length; t++) {
+            teamColorElem = t2_tags[t];
             teamColorElem.style.color = minigame.team2Color;
+          }
+          for (t = 0; t < t3_tags.length; t++) {
+            teamColorElem = t3_tags[t];
+            teamColorElem.style.color = minigame.team3Color;
+          }
+          for (t = 0; t < t4_tags.length; t++) {
+            teamColorElem = t4_tags[t];
+            teamColorElem.style.color = minigame.team4Color;
           }
         }
 
@@ -508,34 +480,69 @@
         }
 
         // Assemble series W-L records
-        if (minigame.hasOwnProperty('team1SeriesWinLoss') && minigame.hasOwnProperty('team2SeriesWinLoss')) {
-          var wlstr1 = "(" + minigame.team1SeriesWinLoss[0] + "-" + minigame.team1SeriesWinLoss[1] + ")";
-          var wlstr2 = "(" + minigame.team2SeriesWinLoss[0] + "-" + minigame.team2SeriesWinLoss[1] + ")";
-          var t1tags = elem.getElementsByClassName('team1seriesrecord');
-          var t2tags = elem.getElementsByClassName('team2seriesrecord');
+        if (
+          minigame.hasOwnProperty('team1SeriesW23L') && 
+          minigame.hasOwnProperty('team2SeriesW23L') &&
+          minigame.hasOwnProperty('team3SeriesW23L') &&
+          minigame.hasOwnProperty('team4SeriesW23L')
+        ) {
+          var t1_wlstr = "(" + minigame.team1SeriesW23L[0] + "-" + minigame.team1SeriesW23L[1] + "-" + minigame.team1SeriesW23L[2] + "-" + minigame.team1SeriesW23L[3] + ", " + (11*minigame.team1SeriesW23L[0] + 7*minigame.team1SeriesW23L[1] + 3*minigame.team1SeriesW23L[2]) + "🌈)";
+          var t2_wlstr = "(" + minigame.team2SeriesW23L[0] + "-" + minigame.team2SeriesW23L[1] + "-" + minigame.team2SeriesW23L[2] + "-" + minigame.team2SeriesW23L[3] + ", " + (11*minigame.team2SeriesW23L[0] + 7*minigame.team2SeriesW23L[1] + 3*minigame.team2SeriesW23L[2]) + "🌈)";
+          var t3_wlstr = "(" + minigame.team3SeriesW23L[0] + "-" + minigame.team3SeriesW23L[1] + "-" + minigame.team3SeriesW23L[2] + "-" + minigame.team3SeriesW23L[3] + ", " + (11*minigame.team3SeriesW23L[0] + 7*minigame.team3SeriesW23L[1] + 3*minigame.team3SeriesW23L[2]) + "🌈)";
+          var t4_wlstr = "(" + minigame.team4SeriesW23L[0] + "-" + minigame.team4SeriesW23L[1] + "-" + minigame.team4SeriesW23L[2] + "-" + minigame.team4SeriesW23L[3] + ", " + (11*minigame.team4SeriesW23L[0] + 7*minigame.team4SeriesW23L[1] + 3*minigame.team4SeriesW23L[2]) + "🌈)";
+
+          var t1_tags = elem.getElementsByClassName('team1seriesrecord');
+          var t2_tags = elem.getElementsByClassName('team2seriesrecord');
+          var t3_tags = elem.getElementsByClassName('team3seriesrecord');
+          var t4_tags = elem.getElementsByClassName('team4seriesrecord');
+
           var t;
-          for (t = 0; t < t1tags.length; t++) {
-            teamWinLossElem = t1tags[t];
-            teamWinLossElem.innerHTML = wlstr1;
+          for (t = 0; t < t1_tags.length; t++) {
+            teamWinLossElem = t1_tags[t];
+            teamWinLossElem.innerHTML = t1_wlstr;
           }
-          for (t = 0; t < t2tags.length; t++) {
-            teamWinLossElem = t2tags[t];
-            teamWinLossElem.innerHTML = wlstr2;
+          for (t = 0; t < t2_tags.length; t++) {
+            teamWinLossElem = t2_tags[t];
+            teamWinLossElem.innerHTML = t2_wlstr;
+          }
+          for (t = 0; t < t3_tags.length; t++) {
+            teamWinLossElem = t3_tags[t];
+            teamWinLossElem.innerHTML = t3_wlstr;
+          }
+          for (t = 0; t < t4_tags.length; t++) {
+            teamWinLossElem = t4_tags[t];
+            teamWinLossElem.innerHTML = t4_wlstr;
           }
         }
 
         // Update team scores
-        if (minigame.hasOwnProperty('team1Score') && minigame.hasOwnProperty('team2Score')) {
-          var t1s = minigame.team1Score;
-          var t2s = minigame.team2Score;
+        if (
+          minigame.hasOwnProperty('team1Score') && 
+          minigame.hasOwnProperty('team2Score') && 
+          minigame.hasOwnProperty('team3Score') && 
+          minigame.hasOwnProperty('team4Score')
+        ) {
+          var t1_s = minigame.team1Score;
+          var t2_s = minigame.team2Score;
+          var t3_s = minigame.team3Score;
+          var t4_s = minigame.team4Score;
+
           var iE;
-          var t1ScoreElems = elem.getElementsByClassName('livecells1');
-          for (iE = 0; iE < t1ScoreElems.length; iE++) {
-            t1ScoreElems[iE].innerHTML = t1s;
+          var t1_ScoreElems = elem.getElementsByClassName('livecells1');
+          for (iE = 0; iE < t1_ScoreElems.length; iE++) {
+            t1_ScoreElems[iE].innerHTML = t1_s;
           }
-          var t2ScoreElems = elem.getElementsByClassName('livecells2');
-          for (iE = 0; iE < t2ScoreElems.length; iE++) {
-            t2ScoreElems[iE].innerHTML = t2s;
+          var t2_ScoreElems = elem.getElementsByClassName('livecells2');
+          for (iE = 0; iE < t2_ScoreElems.length; iE++) {
+            t2_ScoreElems[iE].innerHTML = t2_s;
+          }
+          var t3_ScoreElems = elem.getElementsByClassName('livecells3');
+          for (iE = 0; iE < t3_ScoreElems.length; iE++) {
+            t3_ScoreElems[iE].innerHTML = t3_s;
+          }
+          var t4_ScoreElems = elem.getElementsByClassName('livecells4');
+          for (iE = 0; iE < t4_ScoreElems.length; iE++) {
+            t4_ScoreElems[iE].innerHTML = t4_s;
           }
         }
 
