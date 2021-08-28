@@ -7,6 +7,9 @@ CB := $(shell git branch --show-current)
 all:
 	@echo "no default make rule defined"
 
+clean:
+	rm -fr pelican/output/*
+
 help:
 	cat Makefile
 
