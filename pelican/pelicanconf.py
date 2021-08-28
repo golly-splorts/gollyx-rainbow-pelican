@@ -53,9 +53,6 @@ TEMPLATE_PAGES['postseason.js'] = 'postseason.js'
 TEMPLATE_PAGES['league.html'] = 'league.html'
 TEMPLATE_PAGES['league.js'] = 'league.js'
 
-TEMPLATE_PAGES['league2.html'] = 'league2.html'
-TEMPLATE_PAGES['league2.js'] = 'league2.js'
-
 TEMPLATE_PAGES['maps.html'] = 'maps.html'
 TEMPLATE_PAGES['maps.js'] = 'maps.js'
 
