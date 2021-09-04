@@ -1344,27 +1344,6 @@
         GOL.updateWinLossLabels();
       }
 
-      //if (GOL.showWinnersLosers) {
-      //  // Losers should be in red.
-      //  var last = 3;
-      //  if (this.ranks[0]==last) {
-      //    GOL.element.team1rank.classList.remove('badge-success');
-      //    GOL.element.team1rank.classList.add('badge-danger');
-      //  }
-      //  if (this.ranks[1]==last) {
-      //    GOL.element.team2rank.classList.remove('badge-success');
-      //    GOL.element.team2rank.classList.add('badge-danger');
-      //  }
-      //  if (this.ranks[2]==last) {
-      //    GOL.element.team3rank.classList.remove('badge-success');
-      //    GOL.element.team3rank.classList.add('badge-danger');
-      //  }
-      //  if (this.ranks[3]==last) {
-      //    GOL.element.team4rank.classList.remove('badge-success');
-      //    GOL.element.team4rank.classList.add('badge-danger');
-      //  }
-      //}
-
       r = 1.0/GOL.generation;
       GOL.times.algorithm = (GOL.times.algorithm * (1 - r)) + (algorithmTime * r);
       GOL.times.gui = (GOL.times.gui * (1 - r)) + (guiTime * r);
@@ -2421,31 +2400,35 @@
           //}
         }
 
-        // If any color has the majority, new cell becomes that color
-        if (color1 > 1) {
-          return 1;
-        } else if (color2 > 1) {
-          return 2;
-        } else if (color3 > 1) {
-          return 3;
-        } else if (color4 > 1) {
-          return 4;
-        } else {
-
-          // In case of a 3-way tie,
-          // the winner is the 4th (missing) color
-          if (color1===0) {
-            return 1;
-          } else if (color2===0) {
-            return 2;
-          } else if (color3===0) {
-            return 3;
-          } else if (color4===0) {
-            return 4;
-          } else {
-            return 0;
+        var color = 0;
+        var ns = color1+color2+color3+color4;
+        if (ns > 0) {
+          var maxNeighbor = Math.max(color1, color2, color3, color4);
+          if (maxNeighbor==1 && ns==3) {
+            // Special case: three-way tie
+            // In case of a 3-way tie,
+            // the winner is the 4th (missing) color
+            if (color1==0) {
+              color = 1;
+            } else if (color2==0) {
+              color = 2;
+            } else if (color3==0) {
+              color = 3;
+            } else if (color4==0) {
+              color = 4;
+            }
+          } else if (color1==maxNeighbor) {
+            color = 1;
+          } else if (color2==maxNeighbor) {
+            color = 2;
+          } else if (color3==maxNeighbor) {
+            color = 3;
+          } else if (color4==maxNeighbor) {
+            color = 4;
           }
         }
+
+        return color;
       },
 
       /**
@@ -2701,37 +2684,39 @@
           }
         }
 
-        var color = -1;
+        // This was where we found the first Rainbow Cup bug -
+        // we weren't checking colors exactly like the Python simulator.
+        // We were setting color to -1 before deciding the color,
+        // but some cells ended up with a color of -1 (ghost alive cells).
+        //
+        // We also weren't checking for ties.
 
-        // This is where the problems originate...
-        // We tried to overcome them by using a color-preserving method, but it still seems biased.
-        //if (neighbors1 > 1) {
-        //  color = 1;
-        //} else if (neighbors2 > 1) {
-        //  color = 2;
-        //} else if (neighbors3 > 1) {
-        //  color = 3;
-        //} else if (neighbors4 > 1) {
-        //  color = 4;
-        //}
-
-        // If the color-preserving method really is unbiased, this should have no effect on the outcome.
-        // (Confirmed: it has no effect on the outcome.)
-        if (neighbors1 > 1) {
-          color = 1;
-        }
-        if (neighbors2 > 1) {
-          color = 2;
-        }
-        if (neighbors3 > 1) {
-          color = 3;
-        }
-        if (neighbors4 > 1) {
-          color = 4;
-        }
-
-        if (color === -1) {
-          color = 0;
+        var color = 0;
+        var ns = neighbors1+neighbors2+neighbors3+neighbors4;
+        if (ns > 0) {
+          var maxNeighbor = Math.max(neighbors1, neighbors2, neighbors3, neighbors4);
+          if (maxNeighbor==1 && ns==3) {
+            // Three-way tie
+            // In case of a 3-way tie,
+            // the winner is the 4th (missing) color
+            if (neighbors1==0) {
+              color = 1;
+            } else if (neighbors2==0) {
+              color = 2;
+            } else if (neighbors3==0) {
+              color = 3;
+            } else if (neighbors4==0) {
+              color = 4;
+            }
+          } else if (neighbors1==maxNeighbor) {
+            color = 1;
+          } else if (neighbors2==maxNeighbor) {
+            color = 2;
+          } else if (neighbors3==maxNeighbor) {
+            color = 3;
+          } else if (neighbors4==maxNeighbor) {
+            color = 4;
+          }
         }
 
         return {
@@ -2833,6 +2818,7 @@
               for (j = 1; j < state[i].length; j++) {
                 if (state[i][j] === x) {
                   state[i].splice(j, 1);
+                  return;
                 }
               }
             }
