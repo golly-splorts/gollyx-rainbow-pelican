@@ -1502,11 +1502,11 @@
           // Update run/stop button state
           if (GOL.running) {
             GOL.nextStep();
-            document.getElementById('buttonRun').textContent = 'Stop';
+            document.getElementById('buttonRun').innerHTML = 'Stop(<u>R</u>)';
             document.getElementById('buttonRun').classList.remove("btn-success");
             document.getElementById('buttonRun').classList.add("btn-danger");
           } else {
-            document.getElementById('buttonRun').textContent = 'Run';
+            document.getElementById('buttonRun').innerHTML = '<u>R</u>un';
             document.getElementById('buttonRun').classList.remove("btn-danger");
             document.getElementById('buttonRun').classList.add("btn-success");
           }
