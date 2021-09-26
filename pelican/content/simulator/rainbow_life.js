@@ -286,10 +286,6 @@
 
       // Add ?trail=1 to the end of the URL to show trails
       this.trail.current = this.helpers.getUrlParameter('trail') === '1' ? true : this.trail.current;
-
-      // // Get the current wait time (this is updated when the user changes it)
-      // var x = document.getElementById("speed-slider").value;
-      // this.waitTimeMs = Math.min(10**x, 1000);
     },
 
     /**
@@ -1192,6 +1188,7 @@
 
         }
       } else {
+        // TODO remove elements for records and scores, and remove table header columns
         this.element.team1wlrecCont.remove();
         this.element.team2wlrecCont.remove();
         this.element.team3wlrecCont.remove();
@@ -1508,6 +1505,14 @@
           } else {
             GOL.handlers.buttons.step();
           }
+
+        } else if (event.keyCode === 70 ) { // Key: F
+          var speed = GOL.element.speedSlider.value;
+          speed = speed - 1;
+          if (speed===0) {
+            speed = 4;
+          }
+          GOL.element.speedSlider.value = speed;
 
         } else if (event.keyCode === 71 ) { // Key: G
           GOL.handlers.buttons.grid();
