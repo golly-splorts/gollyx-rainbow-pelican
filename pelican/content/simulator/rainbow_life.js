@@ -1148,27 +1148,47 @@
         var game = this.gameApiResult;
         if (game.isPostseason) {
           // Postseason: win-loss record in current series
-          var t1_swlstr = game.team1SeriesW23L[0] + "-" + game.team1SeriesW23L[1] + "-" + game.team1SeriesW23L[2] + "-" + game.team1SeriesW23L[3] + "<br />" + (11*game.team1SeriesW23L[0] + 7*game.team1SeriesW23L[1] + 3*game.team1SeriesW23L[2]) + " 🌈";
-          var t2_swlstr = game.team2SeriesW23L[0] + "-" + game.team2SeriesW23L[1] + "-" + game.team2SeriesW23L[2] + "-" + game.team2SeriesW23L[3] + "<br />" + (11*game.team2SeriesW23L[0] + 7*game.team2SeriesW23L[1] + 3*game.team2SeriesW23L[2]) + " 🌈";
-          var t3_swlstr = game.team3SeriesW23L[0] + "-" + game.team3SeriesW23L[1] + "-" + game.team3SeriesW23L[2] + "-" + game.team3SeriesW23L[3] + "<br />" + (11*game.team3SeriesW23L[0] + 7*game.team3SeriesW23L[1] + 3*game.team3SeriesW23L[2]) + " 🌈";
-          var t4_swlstr = game.team4SeriesW23L[0] + "-" + game.team4SeriesW23L[1] + "-" + game.team4SeriesW23L[2] + "-" + game.team4SeriesW23L[3] + "<br />" + (11*game.team4SeriesW23L[0] + 7*game.team4SeriesW23L[1] + 3*game.team4SeriesW23L[2]) + " 🌈";
+          var t1_wlstr = game.team1SeriesW23L[0] + "-" + game.team1SeriesW23L[1] + "-" + game.team1SeriesW23L[2] + "-" + game.team1SeriesW23L[3];
+          var t2_wlstr = game.team2SeriesW23L[0] + "-" + game.team2SeriesW23L[1] + "-" + game.team2SeriesW23L[2] + "-" + game.team2SeriesW23L[3];
+          var t3_wlstr = game.team3SeriesW23L[0] + "-" + game.team3SeriesW23L[1] + "-" + game.team3SeriesW23L[2] + "-" + game.team3SeriesW23L[3];
+          var t4_wlstr = game.team4SeriesW23L[0] + "-" + game.team4SeriesW23L[1] + "-" + game.team4SeriesW23L[2] + "-" + game.team4SeriesW23L[3];
 
-          this.element.team1wlrec.innerHTML = t1_swlstr;
-          this.element.team2wlrec.innerHTML = t2_swlstr;
-          this.element.team3wlrec.innerHTML = t3_swlstr;
-          this.element.team4wlrec.innerHTML = t4_swlstr;
+          this.element.team1wlrec.innerHTML = t1_wlstr;
+          this.element.team2wlrec.innerHTML = t2_wlstr;
+          this.element.team3wlrec.innerHTML = t3_wlstr;
+          this.element.team4wlrec.innerHTML = t4_wlstr;
+
+          var t1_rainstr = (11*game.team1SeriesW23L[0] + 7*game.team1SeriesW23L[1] + 3*game.team1SeriesW23L[2]) + " 🌈";
+          var t2_rainstr = (11*game.team2SeriesW23L[0] + 7*game.team2SeriesW23L[1] + 3*game.team2SeriesW23L[2]) + " 🌈";
+          var t3_rainstr = (11*game.team3SeriesW23L[0] + 7*game.team3SeriesW23L[1] + 3*game.team3SeriesW23L[2]) + " 🌈";
+          var t4_rainstr = (11*game.team4SeriesW23L[0] + 7*game.team4SeriesW23L[1] + 3*game.team4SeriesW23L[2]) + " 🌈";
+
+          this.element.team1rain.innerHTML = t1_rainstr;
+          this.element.team2rain.innerHTML = t2_rainstr;
+          this.element.team3rain.innerHTML = t3_rainstr;
+          this.element.team4rain.innerHTML = t4_rainstr;
 
         } else {
           // Season: win-loss record to date
-          var t1_swlstr = game.team1W23L[0] + "-" + game.team1W23L[1] + "-" + game.team1W23L[2] + "-" + game.team1W23L[3] + "<br />" + (11*game.team1W23L[0] + 7*game.team1W23L[1] + 3*game.team1W23L[2]) + " 🌈";
-          var t2_swlstr = game.team2W23L[0] + "-" + game.team2W23L[1] + "-" + game.team2W23L[2] + "-" + game.team2W23L[3] + "<br />" + (11*game.team2W23L[0] + 7*game.team2W23L[1] + 3*game.team2W23L[2]) + " 🌈";
-          var t3_swlstr = game.team3W23L[0] + "-" + game.team3W23L[1] + "-" + game.team3W23L[2] + "-" + game.team3W23L[3] + "<br />" + (11*game.team3W23L[0] + 7*game.team3W23L[1] + 3*game.team3W23L[2]) + " 🌈";
-          var t4_swlstr = game.team4W23L[0] + "-" + game.team4W23L[1] + "-" + game.team4W23L[2] + "-" + game.team4W23L[3] + "<br />" + (11*game.team4W23L[0] + 7*game.team4W23L[1] + 3*game.team4W23L[2]) + " 🌈";
+          var t1_wlstr = game.team1W23L[0] + "-" + game.team1W23L[1] + "-" + game.team1W23L[2] + "-" + game.team1W23L[3];
+          var t2_wlstr = game.team2W23L[0] + "-" + game.team2W23L[1] + "-" + game.team2W23L[2] + "-" + game.team2W23L[3];
+          var t3_wlstr = game.team3W23L[0] + "-" + game.team3W23L[1] + "-" + game.team3W23L[2] + "-" + game.team3W23L[3];
+          var t4_wlstr = game.team4W23L[0] + "-" + game.team4W23L[1] + "-" + game.team4W23L[2] + "-" + game.team4W23L[3];
 
-          this.element.team1wlrec.innerHTML = t1_swlstr;
-          this.element.team2wlrec.innerHTML = t2_swlstr;
-          this.element.team3wlrec.innerHTML = t3_swlstr;
-          this.element.team4wlrec.innerHTML = t4_swlstr;
+          this.element.team1wlrec.innerHTML = t1_wlstr;
+          this.element.team2wlrec.innerHTML = t2_wlstr;
+          this.element.team3wlrec.innerHTML = t3_wlstr;
+          this.element.team4wlrec.innerHTML = t4_wlstr;
+
+          var t1_rainstr = (11*game.team1W23L[0] + 7*game.team1W23L[1] + 3*game.team1W23L[2]) + " 🌈"; 
+          var t2_rainstr = (11*game.team2W23L[0] + 7*game.team2W23L[1] + 3*game.team2W23L[2]) + " 🌈"; 
+          var t3_rainstr = (11*game.team3W23L[0] + 7*game.team3W23L[1] + 3*game.team3W23L[2]) + " 🌈"; 
+          var t4_rainstr = (11*game.team4W23L[0] + 7*game.team4W23L[1] + 3*game.team4W23L[2]) + " 🌈"; 
+
+          this.element.team1rain.innerHTML = t1_rainstr;
+          this.element.team2rain.innerHTML = t2_rainstr;
+          this.element.team3rain.innerHTML = t3_rainstr;
+          this.element.team4rain.innerHTML = t4_rainstr;
 
         }
       } else {
@@ -1246,6 +1266,11 @@
       this.element.team2wlrecCont = document.getElementById("team2record-container");
       this.element.team3wlrecCont = document.getElementById("team3record-container");
       this.element.team4wlrecCont = document.getElementById("team4record-container");
+
+      this.element.team1rain = document.getElementById("team1rainbows");
+      this.element.team2rain = document.getElementById("team2rainbows");
+      this.element.team3rain = document.getElementById("team3rainbows");
+      this.element.team4rain = document.getElementById("team4rainbows");
 
       this.element.livepct    = document.getElementById('livePct');
       // this.element.territory1 = document.getElementById('territory1');
@@ -1502,11 +1527,11 @@
           // Update run/stop button state
           if (GOL.running) {
             GOL.nextStep();
-            document.getElementById('buttonRun').textContent = 'Stop';
+            document.getElementById('buttonRun').innerHTML = 'Stop(<u>R</u>)';
             document.getElementById('buttonRun').classList.remove("btn-success");
             document.getElementById('buttonRun').classList.add("btn-danger");
           } else {
-            document.getElementById('buttonRun').textContent = 'Run';
+            document.getElementById('buttonRun').innerHTML = '<u>R</u>un';
             document.getElementById('buttonRun').classList.remove("btn-danger");
             document.getElementById('buttonRun').classList.add("btn-success");
           }
