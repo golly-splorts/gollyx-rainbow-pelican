@@ -18,63 +18,156 @@
 
   <div class="row">
   
-      <div class="col-sm-4">
+      <div class="col-sm-8">
   
           <div class="card bg-primary mb-3">
               <h4 class="card-header text-white">Scoreboard</h4>
-  
-              <ul class="list-group scoreboard-panel list-group-flush">
-  
-                  <li class="list-group-item scoreboard-panel" id="scoreboard-panel-livecells1">
-                      <table width="100%"><tr><td class="scoreboard-table-left-column">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item scoreboard-panel"> 
+                  <table class="scoreboard-panel-table" width="100%">
+                    <thead>
+                      <th>&nbsp;</td>
+                      <th>&nbsp;</td>
+                      <th>&nbsp;</td>
+                      <th align="right">Score</td>
+                      <th>&nbsp;</td>
+                      <th align="right">Record</td>
+                      <th>&nbsp;</td>
+                    </thead>
+                    <!-- team1 -->
+                    <tr class="scoreboard-table-first-row">
+                      <td class="scoreboard-table-column-rank">
+                          <!-- width is 0px, set to 35px in JS when rank is shown -->
                         <span class="badge badge-success" id="team1rank"></span>
+                      </td>
+                      <td class="scoreboard-table-column-icon">
+                        <!-- width is 35px -->
                         <span class="icon-container team-icon-container" id="team1-icon-container"></span>
+                      </td>
+                      <td class="scoreboard-table-column-name">
                         <span class="team1color team1name"></span>
-                      </td><td align="right" class="scoreboard-table-right-column">
+                      </td>
+                      <td align="right" class="scoreboard-table-column-score">
+                        <!-- width is 45px -->
                         <b>
                         <span class="team1color" id="livecells1"></span>
                         </b>
-                      </td></tr></table>
-                  </li>
-  
-                  <li class="list-group-item scoreboard-panel" id="scoreboard-panel-livecells2">
-                      <table width="100%"><tr><td class="scoreboard-table-left-column">
+                      </td>
+                      <td align="right" class="scoreboard-table-column-spacing">
+                          <p>&nbsp;</p>
+                      </td>
+                      <td align="right" class="scoreboard-table-column-record">
+                        <!-- width is 45px -->
+                        <span class="team1color simulator-record" id="team1record"></span>
+                      </td>
+                      <td align="right" class="scoreboard-table-column-rainbows">
+                        <!-- width is 45px -->
+                        <span class="team1color simulator-rainbows" id="team1rainbows"></span>
+                      </td>
+                    </tr>
+
+
+                    <!-- team2 -->
+                    <tr class="scoreboard-table-nth-row">
+                      <td class="scoreboard-table-column-rank">
+                          <!-- width is 0px, set to 35px in JS when rank is shown -->
                         <span class="badge badge-success" id="team2rank"></span>
+                      </td>
+                      <td class="scoreboard-table-column-icon">
+                        <!-- width is 35px -->
                         <span class="icon-container team-icon-container" id="team2-icon-container"></span>
+                      </td>
+                      <td class="scoreboard-table-column-name">
                         <span class="team2color team2name"></span>
-                      </td><td align="right" class="scoreboard-table-right-column">
+                      </td>
+                      <td align="right" class="scoreboard-table-column-score">
+                        <!-- width is 45px -->
                         <b>
                         <span class="team2color" id="livecells2"></span>
                         </b>
-                      </td></tr></table>
-                  </li>
+                      </td>
+                      <td align="right" class="scoreboard-table-column-spacing">
+                          <p>&nbsp;</p>
+                      </td>
+                      <td align="right" class="scoreboard-table-column-record">
+                        <!-- width is 45px -->
+                        <span class="team2color simulator-record" id="team2record"></span>
+                      </td>
+                      <td align="right" class="scoreboard-table-column-rainbows">
+                        <!-- width is 45px -->
+                        <span class="team2color simulator-rainbows" id="team2rainbows"></span>
+                      </td>
+                    </tr>
 
-                  <li class="list-group-item scoreboard-panel" id="scoreboard-panel-livecells3">
-                      <table width="100%"><tr><td class="scoreboard-table-left-column">
+
+                    <!-- team3 -->
+                    <tr class="scoreboard-table-nth-row">
+                      <td class="scoreboard-table-column-rank">
+                          <!-- width is 0px, set to 35px in JS when rank is shown -->
                         <span class="badge badge-success" id="team3rank"></span>
+                      </td>
+                      <td class="scoreboard-table-column-icon">
+                        <!-- width is 35px -->
                         <span class="icon-container team-icon-container" id="team3-icon-container"></span>
+                      </td>
+                      <td class="scoreboard-table-column-name">
                         <span class="team3color team3name"></span>
-                      </td><td align="right" class="scoreboard-table-right-column">
+                      </td>
+                      <td align="right" class="scoreboard-table-column-score">
+                        <!-- width is 45px -->
                         <b>
                         <span class="team3color" id="livecells3"></span>
                         </b>
-                      </td></tr></table>
-                  </li>
-  
-                  <li class="list-group-item scoreboard-panel" id="scoreboard-panel-livecells4">
-                      <table width="100%"><tr><td class="scoreboard-table-left-column">
+                      </td>
+                      <td align="right" class="scoreboard-table-column-spacing">
+                          <p>&nbsp;</p>
+                      </td>
+                      <td align="right" class="scoreboard-table-column-record">
+                        <!-- width is 45px -->
+                        <span class="team3color simulator-record" id="team3record"></span>
+                      </td>
+                      <td align="right" class="scoreboard-table-column-rainbows">
+                        <!-- width is 45px -->
+                        <span class="team3color simulator-rainbows" id="team3rainbows"></span>
+                      </td>
+                    </tr>
+
+
+                    <!-- team4 -->
+                    <tr class="scoreboard-table-nth-row">
+                      <td class="scoreboard-table-column-rank">
+                          <!-- width is 0px, set to 35px in JS when rank is shown -->
                         <span class="badge badge-success" id="team4rank"></span>
+                      </td>
+                      <td class="scoreboard-table-column-icon">
+                        <!-- width is 35px -->
                         <span class="icon-container team-icon-container" id="team4-icon-container"></span>
+                      </td>
+                      <td class="scoreboard-table-column-name">
                         <span class="team4color team4name"></span>
-                      </td><td align="right" class="scoreboard-table-right-column">
+                      </td>
+                      <td align="right" class="scoreboard-table-column-score">
+                        <!-- width is 45px -->
                         <b>
                         <span class="team4color" id="livecells4"></span>
                         </b>
-                      </td></tr></table>
-                  </li>
+                      </td>
+                      <td align="right" class="scoreboard-table-column-spacing">
+                          <p>&nbsp;</p>
+                      </td>
+                      <td align="right" class="scoreboard-table-column-record">
+                        <!-- width is 45px -->
+                        <span class="team4color simulator-record" id="team4record"></span>
+                      </td>
+                      <td align="right" class="scoreboard-table-column-rainbows">
+                        <!-- width is 45px -->
+                        <span class="team4color simulator-rainbows" id="team4rainbows"></span>
+                      </td>
+                    </tr>
   
+                  </table>
+                </li>
               </ul>
-  
           </div>
   
       </div>
@@ -118,60 +211,6 @@
   
               </ul>
           </div>
-      </div>
-
-
-      <div class="col-sm-4">
-  
-          <div class="card bg-primary mb-3">
-              <h4 class="card-header text-white">Standings</h4>
-  
-              <ul class="list-group list-group-flush">
-
-                  <li class="list-group-item" id="team1record-container">
-                      <table width="100%"><tr><td>
-                        <span class="team1color"><span class="team1name"></span></span>
-                      </td><td align="right" class="simulator-wl-column">
-                        <b>
-                        <span class="team1color simulator-record" id="team1record"></span>
-                        </b>
-                      </td></tr></table>
-                  </li>
-
-                  <li class="list-group-item" id="team2record-container">
-                      <table width="100%"><tr><td>
-                        <span class="team2color"><span class="team2name"></span></span>
-                      </td><td align="right" class="simulator-wl-column">
-                        <b>
-                        <span class="team2color simulator-record" id="team2record"></span>
-                        </b>
-                      </td></tr></table>
-                  </li>
-  
-                  <li class="list-group-item" id="team3record-container">
-                      <table width="100%"><tr><td>
-                        <span class="team3color"><span class="team3name"></span></span>
-                      </td><td align="right" class="simulator-wl-column">
-                        <b>
-                        <span class="team3color simulator-record" id="team3record"></span>
-                        </b>
-                      </td></tr></table>
-                  </li>
-  
-                  <li class="list-group-item" id="team4record-container">
-                      <table width="100%"><tr><td>
-                        <span class="team4color"><span class="team4name"></span></span>
-                      </td><td align="right" class="simulator-wl-column">
-                        <b>
-                        <span class="team4color simulator-record" id="team4record"></span>
-                        </b>
-                      </td></tr></table>
-                  </li>
-
-              </ul>
-  
-          </div>
-  
       </div>
 
   </div>
