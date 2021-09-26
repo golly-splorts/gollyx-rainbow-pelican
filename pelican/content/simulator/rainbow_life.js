@@ -1188,11 +1188,29 @@
 
         }
       } else {
-        // TODO remove elements for records and scores, and remove table header columns
-        this.element.team1wlrecCont.remove();
-        this.element.team2wlrecCont.remove();
-        this.element.team3wlrecCont.remove();
-        this.element.team4wlrecCont.remove();
+
+        // TODO When not in game mode, do the following:
+        // - remove table columns for records and rainbows
+        // - shrink icons column to 0px
+        // - shrink scoreboard container to sm-4
+        var elems;
+        var i, j, k;
+
+        // Delete unused columns from scoreboard table
+        var idsToDelete = ['scoreboard-table-column-icon', 'scoreboard-table-column-spacing', 'scoreboard-table-column-record', 'scoreboard-table-column-rainbows'];
+        for(i = 0; i < idsToDelete.length; i++) {
+          idToDelete = idsToDelete[i];
+          elems = document.getElementsByClassName(idToDelete);
+          while(elems[0]) {
+            elems[0].parentNode.removeChild(elems[0]);
+          }
+        }
+
+        // Shrink scoreboard container to sm-4
+        var elem = document.getElementById('scoreboard-panels-container');
+        elem.classList.remove('col-sm-8');
+        elem.classList.add('col-sm-4');
+
       }
     },
 
@@ -1258,11 +1276,6 @@
       this.element.team2wlrec = document.getElementById("team2record");
       this.element.team3wlrec = document.getElementById("team3record");
       this.element.team4wlrec = document.getElementById("team4record");
-
-      this.element.team1wlrecCont = document.getElementById("team1record-container");
-      this.element.team2wlrecCont = document.getElementById("team2record-container");
-      this.element.team3wlrecCont = document.getElementById("team3record-container");
-      this.element.team4wlrecCont = document.getElementById("team4record-container");
 
       this.element.team1rain = document.getElementById("team1rainbows");
       this.element.team2rain = document.getElementById("team2rainbows");
@@ -1532,7 +1545,7 @@
           // Update run/stop button state
           if (GOL.running) {
             GOL.nextStep();
-            document.getElementById('buttonRun').innerHTML = 'Stop(<u>R</u>)';
+            document.getElementById('buttonRun').innerHTML = '<u>S</u>top';
             document.getElementById('buttonRun').classList.remove("btn-success");
             document.getElementById('buttonRun').classList.add("btn-danger");
           } else {
