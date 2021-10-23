@@ -1036,11 +1036,11 @@
             this.runningAvgWindow[this.generation] = parseFloat(liveCounts.livePct);
           } else {
             // Rainbow Cup criteria uses vector magnitude, to account for changes in all four team scores
-            var livePct1 = liveCounts.liveCells1;
-            var livePct2 = liveCounts.liveCells2;
-            var livePct3 = liveCounts.liveCells3;
-            var livePct4 = liveCounts.liveCells4;
-            this.runningAvgWindow[this.generation] = Math.sqrt(livePct1**2 + livePct2**2 + livePct3**2 + livePct4**2);
+            var liveAmt1 = liveCounts.liveCells1;
+            var liveAmt2 = liveCounts.liveCells2;
+            var liveAmt3 = liveCounts.liveCells3;
+            var liveAmt4 = liveCounts.liveCells4;
+            this.runningAvgWindow[this.generation] = Math.sqrt(liveAmt1**2 + liveAmt2**2 + liveAmt3**2 + liveAmt4**2);
           }
 
         } else {
@@ -1048,15 +1048,15 @@
           if (this.legacyStoppingCriteria) {
             // legacy mode for season 0-2
             var removed = this.runningAvgWindow.shift();
-            this.runningAvgWindow.push(parseFloat(liveCounts.livePct));
+            this.runningAvgWindow.push(parseFloat(liveCounts.liveAmt));
           } else {
             // Rainbow Cup criteria uses vector magnitude
-            var livePct1 = liveCounts.liveCells1;
-            var livePct2 = liveCounts.liveCells2;
-            var livePct3 = liveCounts.liveCells3;
-            var livePct4 = liveCounts.liveCells4;
+            var liveAmt1 = liveCounts.liveCells1;
+            var liveAmt2 = liveCounts.liveCells2;
+            var liveAmt3 = liveCounts.liveCells3;
+            var liveAmt4 = liveCounts.liveCells4;
             var removed = this.runningAvgWindow.shift();
-            this.runningAvgWindow.push(Math.sqrt(livePct1**2 + livePct2**2 + livePct3**2 + livePct4**2));
+            this.runningAvgWindow.push(Math.sqrt(liveAmt1**2 + liveAmt2**2 + liveAmt3**2 + liveAmt4**2));
           }
 
           // compute running average
@@ -1065,6 +1065,8 @@
             sum += this.runningAvgWindow[i];
           }
           var runningAvg = sum/this.runningAvgWindow.length;
+
+          console.log(runningAvg);
 
           // update running average last 3
           removed = this.runningAvgLast3.shift();
