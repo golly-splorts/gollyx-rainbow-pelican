@@ -52,6 +52,7 @@
     gameMode : false,
     mapMode : false,
     sandboxMode : false,
+    legacyStoppingCriteria: false,
 
     teamNames: [],
     teamColors: [],
@@ -348,6 +349,11 @@
           this.setTeamNames();
           this.setColors();
           this.drawIcons();
+
+          // If the game is season 0-1,
+          // use the legacy stopping criteria (to preserve outcome)
+          // otherwise, use updated stopping criteria
+          this.legacyStoppingCriteria = (this.gameApiResult.season < 2);
 
           // Map initial conditions
           this.initialState1 = this.gameApiResult.initialConditions1;
@@ -1024,13 +1030,34 @@
         var maxDim = this.runningAvgMaxDim;
         // update running average window
         if (this.generation < maxDim) {
-          // keep populating the window with victory/live pct
-          this.runningAvgWindow[this.generation] = parseFloat(liveCounts.livePct);
+          // // keep populating the window...
+          if (this.legacyStoppingCriteria) {
+            // legacy mode for season 0-1, to preserve existing results
+            this.runningAvgWindow[this.generation] = parseFloat(liveCounts.livePct);
+          } else {
+            // Rainbow Cup criteria uses vector magnitude, to account for changes in all four team scores
+            var livePct1 = liveCounts.liveCells1;
+            var livePct2 = liveCounts.liveCells2;
+            var livePct3 = liveCounts.liveCells3;
+            var livePct4 = liveCounts.liveCells4;
+            this.runningAvgWindow[this.generation] = Math.sqrt(livePct1**2 + livePct2**2 + livePct3**2 + livePct4**2);
+          }
 
         } else {
-          // update running average window with next live pct
-          var removed = this.runningAvgWindow.shift();
-          this.runningAvgWindow.push(parseFloat(liveCounts.livePct));
+          // // update running average window with next live pct
+          if (this.legacyStoppingCriteria) {
+            // legacy mode for season 0-1
+            var removed = this.runningAvgWindow.shift();
+            this.runningAvgWindow.push(parseFloat(liveCounts.livePct));
+          } else {
+            // Rainbow Cup criteria uses vector magnitude
+            var livePct1 = liveCounts.liveCells1;
+            var livePct2 = liveCounts.liveCells2;
+            var livePct3 = liveCounts.liveCells3;
+            var livePct4 = liveCounts.liveCells4;
+            var removed = this.runningAvgWindow.shift();
+            this.runningAvgWindow.push(Math.sqrt(livePct1**2 + livePct2**2 + livePct3**2 + livePct4**2));
+          }
 
           // compute running average
           var sum = 0.0;
