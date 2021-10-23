@@ -353,7 +353,7 @@
           // If the game is season 0-1,
           // use the legacy stopping criteria (to preserve outcome)
           // otherwise, use updated stopping criteria
-          this.legacyStoppingCriteria = (this.gameApiResult.season < 2);
+          this.legacyStoppingCriteria = (this.gameApiResult.season < 3);
 
           // Map initial conditions
           this.initialState1 = this.gameApiResult.initialConditions1;
@@ -1046,7 +1046,7 @@
         } else {
           // // update running average window with next live pct
           if (this.legacyStoppingCriteria) {
-            // legacy mode for season 0-1
+            // legacy mode for season 0-2
             var removed = this.runningAvgWindow.shift();
             this.runningAvgWindow.push(parseFloat(liveCounts.livePct));
           } else {
