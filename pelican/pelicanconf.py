@@ -28,13 +28,6 @@ READERS = {'html': None}
 STATIC_PATHS = ['img']
 
 
-# --------------------
-# plugins
-
-PLUGIN_PATHS = [os.path.join(os.environ['HOME'], 'codes', 'pelican-plugins')]
-PLUGINS = ['render_math']
-
-
 
 # --------------------
 # Map template pages to their final file name
